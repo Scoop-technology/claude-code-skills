@@ -1,6 +1,11 @@
-# Claude Code Skills
+# Claude Code Skills & Commands
 
-Reusable Claude Code skills for agile project management and development workflows.
+Reusable Claude Code skills and commands for agile project management and development workflows.
+
+## What's the Difference?
+
+- **Commands**: Simple markdown files that create slash commands (e.g., `/commit`, `/pr`, `/lint`) - user-triggered entry points
+- **Skills**: Directories with SKILL.md files containing workflow methodology - can auto-trigger and provide reusable blueprints
 
 ## Available Skills
 
@@ -23,16 +28,16 @@ cd claude-code-skills
 
 ### 2. Run the install script
 
-The install script creates symlinks from `~/.claude/skills/` to the skill directories in this repository.
+The install script creates symlinks from `~/.claude/skills/` and `~/.claude/commands/` to the directories/files in this repository.
 
 **Linux/Mac:**
 ```bash
-./install-skills.sh
+./install.sh
 ```
 
 **Windows (PowerShell):**
 ```powershell
-.\install-skills.ps1
+.\install.ps1
 ```
 
 Note: On Windows, you may need to run PowerShell as Administrator for symlink creation.
@@ -46,15 +51,16 @@ cd /path/to/claude-code-skills
 git pull
 ```
 
-The symlinks ensure Claude Code immediately uses the updated skills.
+The symlinks ensure Claude Code immediately uses the updated skills and commands.
 
 ## What Gets Installed
 
 The install script:
-1. Creates `~/.claude/skills/` directory if it doesn't exist
-2. Symlinks each skill directory into `~/.claude/skills/`
-3. Makes skills available globally for all your projects
-4. Each skill is then automatically loaded by Claude when relevant
+1. Creates `~/.claude/skills/` and `~/.claude/commands/` directories if they don't exist
+2. Symlinks each skill directory from `skills/` into `~/.claude/skills/`
+3. Symlinks each command file from `commands/` into `~/.claude/commands/`
+4. Makes skills and commands available globally for all your projects
+5. Skills auto-load when relevant, commands are invoked with slash syntax (e.g., `/commit`)
 
 ## Per-Project Setup
 
@@ -64,10 +70,25 @@ After installing skills, configure the agile board for each project:
 
 ```bash
 cd /path/to/your/project
-python /path/to/claude-code-skills/agile-board/scripts/setup.py
+python /path/to/claude-code-skills/skills/agile-board/scripts/setup.py
 ```
 
 This creates a project-local `.claude/agile-board-config.json` with your board settings.
+
+## Available Commands
+
+Commands are lightweight slash commands for common development tasks:
+
+- **commit** - Create commits following conventions
+- **branch** - Create branches with proper naming
+- **pr** - Create pull requests
+- **pr-review** - Review pull requests
+- **security-scan** - Run security scans
+- **lint** - Run linting
+- **lint-setup** - Setup linting and pre-commit hooks
+- **format** - Format code
+- **story** - Create user stories
+- **story-start** - Start work on a story
 
 ## Skills Overview
 
@@ -165,7 +186,45 @@ Claude automatically:
 
 ## Architecture
 
+### Directory Structure
+
+```
+claude-code-skills/
+├── commands/              # Slash commands (user entry points)
+│   ├── commit.md
+│   ├── branch.md
+│   ├── pr.md
+│   ├── pr-review.md
+│   ├── security-scan.md
+│   ├── lint.md
+│   ├── lint-setup.md
+│   ├── format.md
+│   ├── story.md
+│   └── story-start.md
+├── skills/               # Skills (methodology/workflows)
+│   ├── git-workflow/
+│   ├── agile-board/
+│   ├── project-management/
+│   ├── developer-analysis/
+│   └── testing/
+├── install.sh
+├── install.ps1
+└── README.md
+```
+
 ### Separation of Concerns
+
+- **Commands**: Lightweight entry points for user-triggered actions
+  - Simple markdown files
+  - Invoked with `/command-name`
+  - Quick access to common tasks
+
+- **Skills**: Reusable workflow methodology
+  - Auto-trigger based on context
+  - Contain detailed process guidance
+  - Progressive disclosure of complexity
+
+**Skill Roles:**
 
 - **project-management** = "WHAT" and "HOW"
   - What to put in stories
