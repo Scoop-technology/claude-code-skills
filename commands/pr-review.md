@@ -13,6 +13,23 @@ Additionally, load the **testing** skill for:
 - Test coverage verification
 - Test quality assessment
 
+## Approval Requirements
+
+**CRITICAL**: When approving a PR, ALWAYS include a detailed comment using the `-b` flag:
+
+```bash
+gh pr review 42 --approve -b "LGTM!
+
+✅ Tests pass
+✅ Code quality good
+✅ Type hints present
+✅ Error handling appropriate
+
+Ready to merge."
+```
+
+**Never approve without a comment** - empty approvals provide no context for the audit trail.
+
 **IMPORTANT: No AI attribution** - Do not add "Co-Authored-By: Claude" or similar to review comments or suggestions.
 
 The skills contain comprehensive review checklists and standards.
