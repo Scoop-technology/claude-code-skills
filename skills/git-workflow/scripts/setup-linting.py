@@ -24,24 +24,29 @@ class LintingSetup:
         self.is_windows = platform.system() == "Windows"
 
     def detect_languages(self) -> None:
-        """Detect which languages are used in the project."""
+        """Detect which languages are used in the project (monorepo-aware)."""
         print("🔍 Detecting project languages...")
 
-        # Python
-        if (self.project_root / "pyproject.toml").exists() or \
-           (self.project_root / "setup.py").exists() or \
-           (self.project_root / "requirements.txt").exists():
+        # Python - scan entire repo for config files or .py files
+        if list(self.project_root.glob("**/pyproject.toml")) or \
+           list(self.project_root.glob("**/setup.py")) or \
+           list(self.project_root.glob("**/requirements.txt")) or \
+           list(self.project_root.glob("**/*.py")):
             self.detected_languages.add("python")
             print("  ✓ Python detected")
 
-        # TypeScript/JavaScript
-        if (self.project_root / "package.json").exists() or \
-           (self.project_root / "tsconfig.json").exists():
+        # TypeScript/JavaScript - scan entire repo for config files or source files
+        if list(self.project_root.glob("**/package.json")) or \
+           list(self.project_root.glob("**/tsconfig.json")) or \
+           list(self.project_root.glob("**/*.ts")) or \
+           list(self.project_root.glob("**/*.tsx")) or \
+           list(self.project_root.glob("**/*.js")) or \
+           list(self.project_root.glob("**/*.jsx")):
             self.detected_languages.add("typescript")
             print("  ✓ TypeScript/JavaScript detected")
 
-        # Flutter/Dart
-        if (self.project_root / "pubspec.yaml").exists():
+        # Flutter/Dart - scan entire repo for pubspec.yaml
+        if list(self.project_root.glob("**/pubspec.yaml")):
             self.detected_languages.add("flutter")
             print("  ✓ Flutter/Dart detected")
 
