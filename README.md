@@ -125,17 +125,21 @@ Board-specific implementation for creating and managing issues.
 
 ### project-management
 
-Board-agnostic agile workflows.
+Board-agnostic agile workflows for refining stories and planning sprints.
 
-**Automatically triggers when:** Writing user stories, creating acceptance criteria, estimating story points, planning sprints or epics
+**Automatically triggers when:** Refining user stories, creating acceptance criteria, estimating story points, planning sprints or epics
 
 **Key features:**
+- Story refinement (takes high-level stories from requirements-design, adds AC and estimates)
 - Story templates (feature, bug, technical)
 - T-shirt sizing (XS=1, S=3, M=5, L=8, XL=13)
 - Acceptance criteria best practices
 - Sprint workflows (planning, retrospectives, velocity tracking)
 - Epic planning and story dependencies
 - Release planning across multiple epics
+
+**Integration:**
+- Takes initial story list from `/requirements-design` → adds detailed AC, estimates, creates tickets
 
 ### developer-analysis
 
