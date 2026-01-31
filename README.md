@@ -9,6 +9,7 @@ Reusable Claude Code skills and commands for agile project management and develo
 
 ## Available Skills
 
+- **requirements-design** - Gather requirements and create world-class design documentation
 - **git-workflow** - GitFlow branching strategy and commit conventions
 - **agile-board** - Board-specific implementation (ZenHub/Jira/Linear)
 - **project-management** - Story templates, estimation, sprint planning, epic planning
@@ -79,6 +80,7 @@ This creates a project-local `.claude/agile-board-config.json` with your board s
 
 Commands are lightweight slash commands for common development tasks:
 
+- **requirements-design** - Gather requirements and create design documentation
 - **commit** - Create commits following conventions
 - **branch** - Create branches with proper naming
 - **pr** - Create pull requests
@@ -162,6 +164,26 @@ Testing strategy, coverage analysis, and quality assurance.
 - Testing standards definition
 - Referenced by developer-analysis and git-workflow skills
 
+### requirements-design
+
+Comprehensive requirements gathering and design documentation creation.
+
+**Automatically triggers when:** Starting a new project or feature, gathering requirements, creating design documentation
+
+**Key features:**
+- **Active architecture guidance** - Challenges assumptions, researches alternatives, suggests improvements
+- **Five core documents** - Constraints, Customer Value, Solution Design, Requirements, Architecture
+- **Multiple approaches** - Customer-First, Technical-First, or Parallel document creation
+- **Initial story decomposition** - Break requirements into epics and high-level stories (handoff to project-management for refinement)
+- **Technical pointers** - Specs, patterns, code references for implementation
+- **Working Backwards** - Amazon methodology for customer-driven design
+- **Reusability focus** - Design for abstraction and portability across organizations
+
+**Integration:**
+- Creates requirements → handoff to `/project-management` for detailed story refinement (AC, estimation, sprint planning)
+- Creates NFRs → handoff to `/testing` for test strategy
+- Creates API contracts → handoff to `/developer-analysis` for POCs and mocks
+
 ## How Skills Work Together
 
 **Example:** "Create a story for implementing dark mode"
@@ -192,6 +214,7 @@ Claude automatically:
 ```
 claude-code-skills/
 ├── commands/              # Slash commands (user entry points)
+│   ├── requirements-design.md
 │   ├── commit.md
 │   ├── branch.md
 │   ├── pr.md
@@ -204,6 +227,7 @@ claude-code-skills/
 │   ├── story-start.md
 │   └── comment.md
 ├── skills/               # Skills (methodology/workflows)
+│   ├── requirements-design/
 │   ├── git-workflow/
 │   ├── agile-board/
 │   ├── project-management/
@@ -227,6 +251,12 @@ claude-code-skills/
   - Progressive disclosure of complexity
 
 **Skill Roles:**
+
+- **requirements-design** = "FOUNDATIONS"
+  - What to build and why (requirements)
+  - How to architect it (design)
+  - Customer value proposition
+  - Initial epic/story breakdown (handoff to project-management for refinement)
 
 - **project-management** = "WHAT" and "HOW"
   - What to put in stories
