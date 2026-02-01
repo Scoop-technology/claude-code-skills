@@ -296,6 +296,51 @@ python ~/.claude/skills/requirements-design/scripts/sharepoint-access.py \
 - Troubleshooting common issues
 - Complete usage examples
 
+### Converting Documents to Markdown
+
+After downloading or receiving documents (.docx, .pdf, .xlsx, .pptx), convert to Markdown for easier access:
+
+```bash
+# Text-heavy documents (default - no images)
+python ~/.claude/skills/requirements-design/scripts/convert-docs-to-md.py \
+  --file ./docs/Reference/requirements.docx
+
+# Documents with important diagrams (extract images)
+python ~/.claude/skills/requirements-design/scripts/convert-docs-to-md.py \
+  --file ./docs/Reference/architecture.docx \
+  --extract-images
+
+# Batch convert folder
+python ~/.claude/skills/requirements-design/scripts/convert-docs-to-md.py \
+  --folder ./docs/Reference/Original/ \
+  --output ./docs/Reference/
+```
+
+**When to extract images** (`--extract-images`):
+- ✅ Architecture diagrams, flowcharts, system diagrams
+- ✅ Screenshots showing UI/UX requirements
+- ✅ Charts/graphs with data you'll reference
+- ❌ Skip if document is mostly diagrams (keep original instead)
+- ❌ Skip for text-heavy docs (images not critical)
+
+**Why convert to Markdown:**
+- ✅ Easier for Claude to read and reference
+- ✅ Version control friendly (can commit to git)
+- ✅ Searchable with grep/text tools
+- ✅ Can link between documents
+
+**Workflow:**
+1. Store originals in `./docs/Reference/Original/` (don't commit to git)
+2. Convert to markdown in `./docs/Reference/` (commit to git)
+3. For diagram-heavy docs, keep original and reference: `See [Process Flow](Original/flow.pdf)`
+
+**See** [document-conversion-guide.md](references/document-conversion-guide.md) **for:**
+- Pandoc installation instructions
+- Supported formats (.docx, .pdf, .xlsx, .pptx, etc.)
+- Conversion examples and options
+- Format-specific conversion notes
+- Troubleshooting
+
 ## Constraints & Reusability
 
 ### Capturing Non-Negotiable Constraints
