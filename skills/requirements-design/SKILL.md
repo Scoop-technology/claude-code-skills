@@ -250,6 +250,52 @@ Which assumptions are wrong? Which need validation before we proceed?"
 
 **Purpose**: Catch misunderstandings early before investing time in wrong direction.
 
+### Accessing SharePoint Documents
+
+When user provides SharePoint URL for documentation location or existing requirements:
+
+**1. Document the location cleanly in constraints:**
+```markdown
+**Documentation Location:**
+- Platform: SharePoint Online
+- Site: [SiteName]
+- Library: [Shared Documents / Documents partages]
+- Folder: [/path/to/folder]
+- Clean URL: https://[company].sharepoint.com/sites/[Site]/Shared Documents/[path]
+```
+
+**2. Access SharePoint via Graph API** (if user has Azure CLI):
+
+```bash
+# Check if authenticated
+az account show
+
+# If not authenticated or wrong tenant:
+az login --allow-no-subscriptions --tenant <tenant-id>
+
+# List SharePoint folder contents
+python ~/.claude/skills/requirements-design/scripts/sharepoint-access.py \
+  --url "<sharepoint-url>" \
+  --action list
+
+# Download relevant files
+python ~/.claude/skills/requirements-design/scripts/sharepoint-access.py \
+  --url "<file-url>" \
+  --action download \
+  --output ./docs/Reference/
+```
+
+**3. Fallback if Graph API unavailable:**
+- Ask user to export/download relevant docs
+- Request user paste key content
+- Note: "Cannot access SharePoint directly - please provide relevant docs"
+
+**See** [sharepoint-access-guide.md](references/sharepoint-access-guide.md) **for:**
+- Azure CLI installation instructions
+- Authentication guide
+- Troubleshooting common issues
+- Complete usage examples
+
 ## Constraints & Reusability
 
 ### Capturing Non-Negotiable Constraints
