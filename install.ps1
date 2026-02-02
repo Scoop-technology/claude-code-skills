@@ -5,7 +5,7 @@ $REPO_DIR = Split-Path -Parent $MyInvocation.MyCommand.Path
 $SKILLS_DIR = "$env:USERPROFILE\.claude\skills"
 $COMMANDS_DIR = "$env:USERPROFILE\.claude\commands"
 
-Write-Host "📦 Claude Code Skills & Commands Installer" -ForegroundColor Cyan
+Write-Host "Claude Code Skills and Commands Installer" -ForegroundColor Cyan
 Write-Host "Installing from: $REPO_DIR" -ForegroundColor Gray
 Write-Host ""
 
@@ -26,7 +26,7 @@ if (Test-Path $skillsPath) {
     }
 
     if ($skillDirs.Count -eq 0) {
-        Write-Host "⚠️  No skills found in skills/ directory" -ForegroundColor Yellow
+        Write-Host "Warning: No skills found in skills/ directory" -ForegroundColor Yellow
     } else {
         foreach ($skillDir in $skillDirs) {
             $skill = $skillDir.Name
@@ -39,7 +39,7 @@ if (Test-Path $skillsPath) {
                 if ($item.LinkType -eq "SymbolicLink") {
                     Remove-Item $targetPath
                 } else {
-                    Write-Host "⚠️  Warning: $targetPath already exists and is not a symlink" -ForegroundColor Yellow
+                    Write-Host "Warning: $targetPath already exists and is not a symlink" -ForegroundColor Yellow
                     Write-Host "   Please remove it manually if you want to replace it" -ForegroundColor Yellow
                     continue
                 }
@@ -48,10 +48,10 @@ if (Test-Path $skillsPath) {
             # Create symlink (requires admin privileges on older Windows versions)
             try {
                 New-Item -ItemType SymbolicLink -Path $targetPath -Target $sourcePath -ErrorAction Stop | Out-Null
-                Write-Host "✅ Installed skill: $skill" -ForegroundColor Green
+                Write-Host "[OK] Installed skill: $skill" -ForegroundColor Green
                 $installedSkills++
             } catch {
-                Write-Host "❌ Failed to install skill $skill : $_" -ForegroundColor Red
+                Write-Host "[ERROR] Failed to install skill $skill : $_" -ForegroundColor Red
                 Write-Host "   You may need to run PowerShell as Administrator" -ForegroundColor Yellow
             }
         }
@@ -65,7 +65,7 @@ if (Test-Path $commandsPath) {
     $commandFiles = Get-ChildItem -Path $commandsPath -Filter "*.md"
 
     if ($commandFiles.Count -eq 0) {
-        Write-Host "⚠️  No commands found in commands/ directory" -ForegroundColor Yellow
+        Write-Host "Warning: No commands found in commands/ directory" -ForegroundColor Yellow
     } else {
         foreach ($commandFile in $commandFiles) {
             $command = $commandFile.Name
@@ -78,7 +78,7 @@ if (Test-Path $commandsPath) {
                 if ($item.LinkType -eq "SymbolicLink") {
                     Remove-Item $targetPath
                 } else {
-                    Write-Host "⚠️  Warning: $targetPath already exists and is not a symlink" -ForegroundColor Yellow
+                    Write-Host "Warning: $targetPath already exists and is not a symlink" -ForegroundColor Yellow
                     Write-Host "   Please remove it manually if you want to replace it" -ForegroundColor Yellow
                     continue
                 }
@@ -88,10 +88,10 @@ if (Test-Path $commandsPath) {
             try {
                 New-Item -ItemType SymbolicLink -Path $targetPath -Target $sourcePath -ErrorAction Stop | Out-Null
                 $commandName = [System.IO.Path]::GetFileNameWithoutExtension($command)
-                Write-Host "✅ Installed command: $commandName" -ForegroundColor Green
+                Write-Host "[OK] Installed command: $commandName" -ForegroundColor Green
                 $installedCommands++
             } catch {
-                Write-Host "❌ Failed to install command $command : $_" -ForegroundColor Red
+                Write-Host "[ERROR] Failed to install command $command : $_" -ForegroundColor Red
                 Write-Host "   You may need to run PowerShell as Administrator" -ForegroundColor Yellow
             }
         }
@@ -99,7 +99,7 @@ if (Test-Path $commandsPath) {
 }
 
 Write-Host ""
-Write-Host "📝 Installation complete:" -ForegroundColor Cyan
+Write-Host "Installation complete:" -ForegroundColor Cyan
 Write-Host "   - $installedSkills skill(s) installed to $SKILLS_DIR"
 Write-Host "   - $installedCommands command(s) installed to $COMMANDS_DIR"
 Write-Host ""
