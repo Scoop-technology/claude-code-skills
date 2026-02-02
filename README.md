@@ -37,11 +37,28 @@ The install script creates symlinks from `~/.claude/skills/` and `~/.claude/comm
 ```
 
 **Windows (PowerShell):**
-```powershell
-.\install.ps1
-```
 
-Note: On Windows, you may need to run PowerShell as Administrator for symlink creation.
+Windows requires admin privileges to create symbolic links (or Developer Mode enabled). Follow these steps:
+
+**Option 1: Run PowerShell as Administrator (Recommended for first-time setup)**
+1. Right-click the Windows Start button → Select "Windows PowerShell (Admin)" or "Terminal (Admin)"
+2. Navigate to the repository directory:
+   - In VS Code, right-click the `install.ps1` file → "Copy Path"
+   - In PowerShell Admin: `cd "C:\path\you\copied"`
+3. Run the install script:
+   ```powershell
+   .\install.ps1
+   ```
+
+**Option 2: Enable Developer Mode (No admin needed for future installs)**
+1. Settings → Privacy & Security → For developers
+2. Enable "Developer Mode"
+3. Restart PowerShell (no admin needed)
+4. Navigate to the repository and run:
+   ```powershell
+   cd path\to\claude-code-skills
+   .\install.ps1
+   ```
 
 ### 3. Update skills
 
