@@ -361,7 +361,7 @@ Use `/project-management` to:
 
 **Priority**: Must Have (Phase 1)
 
-**Requirements Source**: Section 3.2 in `requirements-document-search.md`
+**Requirements Source**: Section 3.2 in `04-requirements-document-search.md`
 
 **Dependencies**: Epic 0 (Development Environment)
 

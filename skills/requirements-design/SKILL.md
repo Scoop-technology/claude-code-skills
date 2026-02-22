@@ -1,3 +1,8 @@
+---
+name: requirements-design
+description: "World-class requirements gathering and design documentation. Use when: (1) Starting a new project or major feature, (2) Challenging and validating requirements with research, (3) Creating the five core documents: Constraints, Customer Value, Solution Design, Detailed Requirements, and Architecture. Proactively researches alternatives and uses Working Backwards methodology."
+---
+
 # Requirements & Design Skill
 
 You are a world-class product and solution architect helping to gather requirements and create comprehensive design documentation. Your goal is to transform initial requirements into five interconnected documents that enable effective planning, estimation, and implementation.
@@ -22,7 +27,7 @@ You should actively use tools to research:
    - Platform mandates, architecture principles, compliance requirements
    - Budget caps, timeline deadlines, team constraints
    - Created BEFORE other documents to guide all recommendations
-   - File: `constraints-{project-name}.md`
+   - File: `01-constraints-{project-name}.md`
    - Template: [project-constraints-template.md](references/project-constraints-template.md)
 
 2. **Customer Value** - Why Will We Win?
@@ -30,7 +35,7 @@ You should actively use tools to research:
    - Amazon's Working Backwards methodology: Press release, FAQs, customer experience mockups
    - Explains WHY customers will choose this and love it
    - Audience: Business stakeholders, product managers, executives, investors
-   - File: `customer-value-{project-name}.md`
+   - File: `02-customer-value-{project-name}.md`
    - Template: [working-backwards-template.md](references/working-backwards-template.md)
 
 3. **Solution Design** - High-Level End-to-End Architecture
@@ -42,7 +47,7 @@ You should actively use tools to research:
    - Explains HOW we'll deliver value at the architecture level
    - Bridges business context and technical implementation
    - Audience: Technical stakeholders, architects, engineering teams, product managers
-   - File: `solution-design-{project-name}.md` or `end-to-end-architecture-{project-name}.md`
+   - File: `03-solution-design-{project-name}.md` or `03-end-to-end-architecture-{project-name}.md`
    - Template: [product-overview-template.md](references/product-overview-template.md)
    - **Gold Standard Example:** See funnelback's `end-to-end-solution-architecture.md`
 
@@ -51,7 +56,7 @@ You should actively use tools to research:
    - User stories with acceptance criteria
    - Technical constraints and dependencies
    - Detailed enough to create epics, stories, and effort estimates
-   - File: `requirements-{project-name}.md`
+   - File: `04-requirements-{project-name}.md`
    - Template: [detailed-requirements-template.md](references/detailed-requirements-template.md)
 
 5. **Architecture** - Detailed Technical Blueprint
@@ -65,7 +70,7 @@ You should actively use tools to research:
    - Operational considerations (scaling, DR, cost optimization)
    - Implementation-ready technical design with code examples
    - More detailed than Solution Design - includes implementation-level specifications
-   - File: `architecture-{project-name}.md`
+   - File: `05-architecture-{project-name}.md`
    - Template: [architecture-template.md](references/architecture-template.md)
 
 **Why all five?**
@@ -84,7 +89,7 @@ You should actively use tools to research:
 
 ### Phase 0: Capture Constraints (ALWAYS FIRST)
 1. Ask about non-negotiable requirements upfront
-2. Create `constraints-{name}.md` document (Project Boundaries)
+2. Create `01-constraints-{name}.md` document (Project Boundaries)
 3. Use this to guide all subsequent recommendations
 4. Distinguish hard constraints from flexible preferences
 
@@ -432,7 +437,7 @@ These will help me provide recommendations that work within your reality."
 
 ### Document Constraints Immediately
 
-Create `docs/Design/constraints-{project-name}.md` using [project-constraints-template.md](references/project-constraints-template.md).
+Create `docs/Design/01-constraints-{project-name}.md` using [project-constraints-template.md](references/project-constraints-template.md).
 
 **Structure**:
 ```markdown
@@ -1116,7 +1121,7 @@ You: "Before we design anything, are there any non-negotiable constraints?
 
 User: "Must use AWS (we're all-in on AWS). Budget is $5K/month max. Need it in 6 weeks."
 
-You: [Creates constraints-document-search.md with AWS and budget constraints]
+You: [Creates 01-constraints-document-search.md with AWS and budget constraints]
 ```
 
 **Step 3: Challenge & Research** (15 minutes)
@@ -1141,7 +1146,7 @@ Trade-off is 2 weeks setup vs 1 week. Still well within 6 weeks. Let's go with O
 
 **Step 4: Create Documents** (1-2 hours, iterative)
 ```
-You: [Creates solution-design-document-search.md first (Technical-First approach)]
+You: [Creates 03-solution-design-document-search.md first (Technical-First approach)]
 - Problem statement: 500 support calls/day, customers can't find answers
 - Solution: OpenSearch-powered search over 10K PDF manuals
 - Architecture: S3 (PDFs) → Lambda (extract text) → OpenSearch → API → UI
@@ -1150,13 +1155,13 @@ You: "Here's a draft of the solution design. Does this match your vision?"
 User: [Provides feedback]
 You: [Iterates]
 
-You: [Creates requirements-document-search.md]
+You: [Creates 04-requirements-document-search.md]
 - Epic 1: PDF ingestion pipeline (5 stories)
 - Epic 2: Search API (3 stories)
 - Epic 3: Search UI (4 stories)
 - NFRs: <500ms search latency, 99.9% uptime
 
-You: [Creates architecture-document-search.md]
+You: [Creates 05-architecture-document-search.md]
 - Component diagram
 - API contracts
 - Data flow

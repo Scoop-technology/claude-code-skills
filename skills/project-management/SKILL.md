@@ -1,7 +1,6 @@
 ---
 name: project-management
 description: "Agile project management workflows for creating tickets, managing sprints, writing acceptance criteria, and setting estimates. Use when: (1) Writing user stories, (2) Creating acceptance criteria, (3) Estimating story points, (4) Sprint planning, (5) Epic planning, (6) Managing story dependencies, (7) Release planning. Works with any agile board (requires agile-board skill for board-specific implementation)."
-model: sonnet
 ---
 # Project Management
 

@@ -1,7 +1,6 @@
 ---
 name: testing
 description: "Testing strategy, coverage analysis, and quality assurance. Use when: (1) Planning test strategy for a story, (2) Analyzing test coverage, (3) Reviewing test quality in PRs, (4) Creating mocks for integrations, (5) Defining testing standards. Referenced by developer-analysis (test strategy in design) and git-workflow (PR review test verification)."
-model: sonnet
 ---
 # Testing Strategy and Quality Assurance
 

@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build: Package Skills",
+            "type": "shell",
+            "command": "python3 build.py",
+            "windows": {
+                "command": "python build.py"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build: Preview Files",
+            "type": "shell",
+            "command": "python3 build.py --list",
+            "windows": {
+                "command": "python build.py --list"
+            },
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build: Package Skills (custom version)",
+            "type": "shell",
+            "command": "python3 build.py --version ${input:version}",
+            "windows": {
+                "command": "python build.py --version ${input:version}"
+            },
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "version",
+            "type": "promptString",
+            "description": "Version string for the archive (e.g. v1.2.0)"
+        }
+    ]
+}

@@ -1,3 +1,9 @@
+---
+name: format
+description: Auto-format code according to project standards using the appropriate formatter for each language. Use to fix formatting issues across the codebase.
+disable-model-invocation: true
+---
+
 # Format Command
 
 Auto-format code according to project standards.

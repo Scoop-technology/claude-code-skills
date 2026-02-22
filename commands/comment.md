@@ -1,3 +1,10 @@
+---
+name: comment
+description: Add a comment to the current story ticket on the agile board. Identifies the story from the current branch name and posts the comment via the board API.
+argument-hint: "[comment text]"
+disable-model-invocation: true
+---
+
 # Comment Command
 
 Add a comment to the current story ticket on the board.

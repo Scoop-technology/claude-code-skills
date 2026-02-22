@@ -313,6 +313,55 @@ Each skill uses Claude's progressive disclosure pattern:
 - Detailed guides in `references/`
 - Only loads what's needed when needed
 
+## Building for Distribution
+
+Run the build script to produce all distributable archives:
+
+```bash
+python3 build.py
+```
+
+This produces two types of output in `dist/`:
+
+| File | Purpose |
+|------|---------|
+| `dist/claude-code-skills-{version}.zip` | Full distribution for **Claude Code** (CLI) |
+| `dist/skills/agile-board.zip` | Individual skill for **Claude Desktop** upload |
+| `dist/skills/developer-analysis.zip` | Individual skill for **Claude Desktop** upload |
+| `dist/skills/git-workflow.zip` | Individual skill for **Claude Desktop** upload |
+| `dist/skills/project-management.zip` | Individual skill for **Claude Desktop** upload |
+| `dist/skills/requirements-design.zip` | Individual skill for **Claude Desktop** upload |
+| `dist/skills/testing.zip` | Individual skill for **Claude Desktop** upload |
+
+Only committed, tracked files are included (uses `git archive` / `git ls-files`). The `--dirty` suffix in the version string indicates uncommitted changes are present.
+
+**Common options:**
+
+```bash
+python3 build.py                        # Build everything (auto-version)
+python3 build.py --version v1.2.0       # Override version string
+python3 build.py --list                 # Preview files before building
+python3 build.py --output /tmp/release  # Custom output directory
+```
+
+> **Note:** Run `git commit` before building to include your latest changes.
+
+**Installing from the zip:**
+
+```bash
+# Claude Code — Linux / Mac
+unzip claude-code-skills-*.zip -d claude-code-skills
+cd claude-code-skills && bash install.sh
+
+# Claude Code — Windows (PowerShell)
+Expand-Archive claude-code-skills-*.zip -DestinationPath claude-code-skills
+cd claude-code-skills && .\install.ps1
+
+# Claude Desktop
+# Settings > Capabilities > Skills > Upload ZIP
+# Upload individual skill zips from dist/skills/
+```
+
 ## Contributing
 
 ### Guidelines

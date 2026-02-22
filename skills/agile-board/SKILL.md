@@ -1,7 +1,6 @@
 ---
 name: agile-board
 description: "Board-specific implementation for creating and managing issues. Use when: creating issues on ZenHub/Jira/Linear, moving issues between pipelines, adding to sprints, setting board-specific fields. For story templates and estimation, use project-management skill. On first use in a project, run setup if .claude/agile-board-config.json is missing."
-model: haiku
 ---
 
 # Agile Board Integration

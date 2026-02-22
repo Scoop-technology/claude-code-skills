@@ -1,3 +1,8 @@
+---
+name: security-scan
+description: Run security vulnerability scans including dependency audits, static analysis, and secret detection. Use before releases or when reviewing security posture.
+---
+
 # Security Scan Command
 
 Run security scans for vulnerabilities.

@@ -1,3 +1,9 @@
+---
+name: lint-setup
+description: Set up linting tools and pre-commit hooks automatically for the current project. Run once when starting a new project or adding linting to an existing codebase.
+disable-model-invocation: true
+---
+
 # Lint Setup Command
 
 Set up linting and pre-commit hooks automatically.

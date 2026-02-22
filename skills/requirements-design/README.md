@@ -276,11 +276,11 @@ By default, documents are created in `docs/Design/`:
 
 ```
 docs/Design/
-├── constraints-{project-name}.md            # 1. Project Boundaries
-├── customer-value-{project-name}.md         # 2. Why Will We Win?
-├── solution-design-{project-name}.md        # 3. High-Level Delivery Approach
-├── requirements-{project-name}.md           # 4. Detailed Specifications
-└── architecture-{project-name}.md           # 5. Technical Blueprint
+├── 01-constraints-{project-name}.md         # 1. Project Boundaries
+├── 02-customer-value-{project-name}.md      # 2. Why Will We Win?
+├── 03-solution-design-{project-name}.md     # 3. High-Level Delivery Approach
+├── 04-requirements-{project-name}.md        # 4. Detailed Specifications
+└── 05-architecture-{project-name}.md        # 5. Technical Blueprint
 ```
 
 **All five documents are always created** for consistency and completeness.

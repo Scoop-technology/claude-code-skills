@@ -1,3 +1,9 @@
+---
+name: pr
+description: Create a pull request for the current branch. Runs quality checks, applies the git-workflow PR template, and targets the correct base branch per GitFlow conventions.
+disable-model-invocation: true
+---
+
 # Pull Request Command
 
 Create a pull request for the current branch.

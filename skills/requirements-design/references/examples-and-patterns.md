@@ -349,7 +349,7 @@ SSO_CERT_URL=https://login.microsoftonline.com/tenant-id/federationmetadata/2007
 
 **Steps**:
 
-1. **Update `requirements-ai-assistant.md`**:
+1. **Update `04-requirements-ai-assistant.md`**:
    ```markdown
    **Status**: 🚧 In Progress  (changed from ✅ Complete)
 
@@ -376,7 +376,7 @@ SSO_CERT_URL=https://login.microsoftonline.com/tenant-id/federationmetadata/2007
    | Q7 | SharePoint API rate limits? | ⏳ PENDING | **Action**: Microsoft SA to confirm |
    ```
 
-2. **Update `architecture-ai-assistant.md`**:
+2. **Update `05-architecture-ai-assistant.md`**:
    ```markdown
    **Status**: 🚧 In Progress
 
@@ -404,7 +404,7 @@ SSO_CERT_URL=https://login.microsoftonline.com/tenant-id/federationmetadata/2007
    as SharePoint connector (authenticate → enumerate → extract → transform → index).
    ```
 
-3. **Update `constraints-ai-assistant.md`** (if new constraints):
+3. **Update `01-constraints-ai-assistant.md`** (if new constraints):
    ```markdown
    **NEW Constraint**: Must use Microsoft Graph API
    - **Type**: Technical Standard
@@ -423,17 +423,17 @@ SSO_CERT_URL=https://login.microsoftonline.com/tenant-id/federationmetadata/2007
 **Steps**:
 
 1. **Create Phase 2 document set**:
-   - `constraints-ai-assistant-phase2.md`
-   - `customer-value-ai-assistant-phase2.md`
-   - `solution-design-ai-assistant-phase2.md`
-   - `requirements-ai-assistant-phase2.md`
-   - `architecture-ai-assistant-phase2.md`
+   - `01-constraints-ai-assistant-phase2.md`
+   - `02-customer-value-ai-assistant-phase2.md`
+   - `03-solution-design-ai-assistant-phase2.md`
+   - `04-requirements-ai-assistant-phase2.md`
+   - `05-architecture-ai-assistant-phase2.md`
 
 2. **In each Phase 2 document, reference Phase 1**:
    ```markdown
    ## Phase 1 Context
 
-   **Phase 1 Documents**: See [requirements-ai-assistant.md](requirements-ai-assistant.md)
+   **Phase 1 Documents**: See [04-requirements-ai-assistant.md](04-requirements-ai-assistant.md)
 
    **Phase 1 Delivered**:
    - SharePoint indexing for 13+ collections

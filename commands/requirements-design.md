@@ -1,3 +1,9 @@
+---
+name: requirements-design
+description: Gather requirements and create comprehensive design documentation. Produces five core documents: Constraints, Customer Value, Solution Design, Detailed Requirements, and Architecture. Use when starting a new project or major feature.
+disable-model-invocation: true
+---
+
 # Requirements & Design Command
 
 Gather requirements and create world-class design documentation for a project or feature.

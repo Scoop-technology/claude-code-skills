@@ -1,3 +1,8 @@
+---
+name: lint
+description: Run linting and code quality checks for the current project. Use before committing to catch style issues, errors, and code smells.
+---
+
 # Lint Command
 
 Run linting and code quality checks.

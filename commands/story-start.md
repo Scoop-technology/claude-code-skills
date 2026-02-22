@@ -1,3 +1,10 @@
+---
+name: story-start
+description: Begin work on a user story with full setup: fetch story details, create feature branch, update board status, and run developer analysis. Use at the start of a sprint story.
+argument-hint: "[story-id]"
+disable-model-invocation: true
+---
+
 # Story Start Command
 
 Begin work on a user story with proper analysis and setup.

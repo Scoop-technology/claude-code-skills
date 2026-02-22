@@ -1,3 +1,9 @@
+---
+name: pr-review
+description: Review a pull request for code quality, testing, and standards compliance. Loads git-workflow and testing skills for a comprehensive, structured review.
+argument-hint: "[PR-number]"
+---
+
 # Pull Request Review Command
 
 Review a pull request for code quality and standards.

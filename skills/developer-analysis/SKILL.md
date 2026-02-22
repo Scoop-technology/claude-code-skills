@@ -1,7 +1,6 @@
 ---
 name: developer-analysis
 description: "Engineering analysis before implementation. Use when: (1) Starting work on a story, (2) Analyzing requirements and identifying ambiguities, (3) Creating POC scripts for third-party integrations, (4) Proposing technical design for user approval, (5) Reconciling with existing architecture. Proactively use BEFORE writing any implementation code to ensure alignment and reduce rework."
-model: opus
 ---
 
 # Developer Analysis

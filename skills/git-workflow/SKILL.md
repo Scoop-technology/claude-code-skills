@@ -1,7 +1,6 @@
 ---
 name: git-workflow
 description: "GitFlow branching strategy and commit conventions. Use when: (1) Creating branches (feature/bugfix/hotfix/release), (2) Writing commit messages, (3) Creating or reviewing pull requests, (4) Merging code, (5) Questions about branch targets or git operations, (6) Setting up pre-commit hooks, linting, or code quality checks, (7) Questions about automated formatting or quality enforcement. CRITICAL: Feature/bugfix always target develop, NOT main."
-model: sonnet
 ---
 
 # Git Workflow
