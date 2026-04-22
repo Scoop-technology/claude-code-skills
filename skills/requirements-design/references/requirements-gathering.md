@@ -35,7 +35,7 @@ This guide provides a structured approach to gathering requirements through prog
 - What business value does this deliver?
 
 **Probing Questions:**
-- If this project is wildly successful, what changes for your organization/users?
+- If this project is wildly successful, what changes for your organisation/users?
 - What capabilities will users have that they don't have today?
 - Are there secondary benefits beyond the main goal?
 
@@ -69,18 +69,18 @@ This guide provides a structured approach to gathering requirements through prog
 
 ---
 
-### 1.4 Timeline & Constraints
+### 1.4 Timeline & Business Guardrails
 
-**CRITICAL: Ask about constraints FIRST, before diving into requirements.**
+**CRITICAL: Ask about guardrails FIRST, before diving into requirements.** These feed the (1) Business Guardrails document.
 
 **Core Questions:**
 - What is the desired timeline?
 - Is there a hard deadline? If so, why?
 - Are there phases or milestones?
 - What is the budget (hard cap or flexible)?
-- Are there fixed constraints?
+- Are there fixed guardrails or constraints?
 
-**Constraint Categories to Explore:**
+**Guardrail Categories to Explore:**
 
 **Platform & Infrastructure:**
 - Must use specific cloud provider (Azure, AWS, GCP)?
@@ -95,7 +95,7 @@ This guide provides a structured approach to gathering requirements through prog
 
 **Development Infrastructure:**
 - Which source control system (GitHub Enterprise, GitLab, Azure DevOps)?
-- Which organization/repo structure?
+- Which organisation/repo structure?
 - Where should documentation be stored (repo, Confluence, SharePoint, wiki)?
 - CI/CD requirements or constraints?
 
@@ -105,7 +105,7 @@ This guide provides a structured approach to gathering requirements through prog
 - Must integrate with specific systems (SSO provider, monitoring, etc.)?
 - Technology standards (specific versions, libraries)?
 
-**Organizational:**
+**Organisational:**
 - Required process involvement (security review, architecture review)?
 - Team size fixed or flexible?
 - Hiring constraints?
@@ -115,13 +115,13 @@ This guide provides a structured approach to gathering requirements through prog
 - What happens if we don't meet the deadline?
 - Can scope be adjusted to meet timeline?
 - Are there dependencies on other projects or teams?
-- Which constraints are absolute vs flexible?
-- Is there an exception process for any constraints?
+- Which guardrails are absolute vs flexible?
+- Is there an exception process for any guardrails?
 
 **What to Document:**
 - Timeline with phases
 - Critical milestones and why they matter
-- **Non-negotiable constraints** (capture in constraints document immediately)
+- **Non-negotiable guardrails** (capture in the (1) Business Guardrails document immediately)
 - **Flexible preferences** (can be challenged)
 - Dependencies
 - Exception processes (if any)
@@ -177,7 +177,7 @@ This guide provides a structured approach to gathering requirements through prog
 - Are there examples of this feature in other systems?
 
 **What to Document:**
-- Feature list with MoSCoW prioritization (Must have, Should have, Could have, Won't have)
+- Feature list with MoSCoW prioritisation (Must have, Should have, Could have, Won't have)
 - Feature descriptions with user stories
 - Acceptance criteria per feature
 - Dependencies between features
@@ -279,14 +279,14 @@ This guide provides a structured approach to gathering requirements through prog
 - Are there compliance requirements (GDPR, HIPAA, SOC 2)?
 
 **Probing Questions:**
-- What happens if someone unauthorized accesses data?
+- What happens if someone unauthorised accesses data?
 - Do we need audit logging (who did what when)?
 - How are secrets (passwords, API keys) managed?
 - Are there penetration testing requirements?
 
 **What to Document:**
 - Authentication method
-- Authorization model (RBAC, ABAC)
+- Authorisation model (RBAC, ABAC)
 - Data classification (public, internal, confidential)
 - Compliance requirements
 - Security testing requirements
@@ -368,7 +368,7 @@ This guide provides a structured approach to gathering requirements through prog
 
 **Core Questions:**
 - What infrastructure is already in place? (cloud provider, on-prem, hybrid)
-- What technologies are standardized? (languages, frameworks, databases)
+- What technologies are standardised? (languages, frameworks, databases)
 - What tooling is in use? (CI/CD, monitoring, logging)
 - Are there architectural patterns or standards?
 
@@ -529,7 +529,7 @@ This guide provides a structured approach to gathering requirements through prog
 - Sketching/diagramming (describe what you'd draw)
 - Reviewing existing code/documentation
 
-### 7. Prioritize Ruthlessly
+### 7. Prioritise Ruthlessly
 - Use MoSCoW (Must, Should, Could, Won't)
 - Validate priorities against goals
 - Challenge "must haves" that aren't critical

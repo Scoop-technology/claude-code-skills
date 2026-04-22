@@ -103,7 +103,7 @@ Example:
 
 ### 3.1 Internal Modules (Modular, Not Microservice-Sprawl)
 
-Inside the [System Name] codebase, organized as a **[monorepo/multi-repo]** with [generic/source-specific] modules:
+Inside the [System Name] codebase, organised as a **[monorepo/multi-repo]** with [generic/source-specific] modules:
 
 ### Core Modules (Generic/Reusable)
 
@@ -129,7 +129,7 @@ Inside the [System Name] codebase, organized as a **[monorepo/multi-repo]** with
 
 #### 2. **core/auth/**
 
-**Purpose**: [Authentication and authorization]
+**Purpose**: [Authentication and authorisation]
 
 **Responsibilities**:
 * [Responsibility 1 - e.g., JWT validation]
@@ -210,7 +210,7 @@ Adding a new source (e.g., [New Service]) requires:
 
 2. **Reuse all core modules**:
    - `core/api/` - Base API framework
-   - `core/auth/` - Authentication/authorization
+   - `core/auth/` - Authentication/authorisation
    - `core/processing/` - Shared processing logic
    - `core/storage/` - Shared storage access
 
@@ -538,7 +538,7 @@ Content-Type: application/json
 - Handler: `src/api/resources.py:create_resource()`
 - Validation: [Pydantic model, JSON schema]
 - Database: [SQL query or ORM call]
-- Performance: [Expected latency, optimization notes]
+- Performance: [Expected latency, optimisation notes]
 
 ---
 
@@ -935,11 +935,11 @@ Trace: abc-123
 - When: [Horizontal scaling not sufficient]
 - Strategy: [Schedule maintenance window, resize]
 
-### 9.2 Performance Optimization
+### 9.2 Performance Optimisation
 
 **Database**:
 - Indexing: [Indexes on high-cardinality columns]
-- Query optimization: [Avoid N+1 queries, use joins]
+- Query optimisation: [Avoid N+1 queries, use joins]
 - Connection pooling: [Pool size, max connections]
 - Read replicas: [For read-heavy workloads]
 
@@ -1088,7 +1088,7 @@ Trace: abc-123
 **Goals**: [Production readiness]
 
 **Deliverables**:
-- [ ] Performance testing and optimization
+- [ ] Performance testing and optimisation
 - [ ] Security audit
 - [ ] Documentation
 - [ ] Monitoring and alerting

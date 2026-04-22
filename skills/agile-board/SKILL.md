@@ -1,98 +1,107 @@
 ---
 name: agile-board
-description: "Board-specific implementation for creating and managing issues. Use when: creating issues on ZenHub/Jira/Linear, moving issues between pipelines, adding to sprints, setting board-specific fields. For story templates and estimation, use project-management skill. On first use in a project, run setup if .claude/agile-board-config.json is missing."
+description: "Board-specific implementation for creating and managing epics, stories, and tickets. Supports markdown files in the project repo (default), GitHub Issues, ZenHub, Jira, and Linear. Use when: creating issues, moving them between statuses, adding to sprints, setting estimates, or linking stories to epics. For story templates and estimation guidance use the project-management skill. On first use in a project, run setup if .claude/agile-board-config.json is missing."
 ---
 
 # Agile Board Integration
 
-Board-specific implementation for Jira, ZenHub, Linear, and other project management platforms.
+Board-specific implementation for markdown-in-repo, GitHub Issues, ZenHub, Jira, and Linear.
 
 ## Overview
 
-**This skill provides the "WHERE"**: Board-specific MCP tools, APIs, and configuration for creating and managing issues on project management boards.
+**This skill provides the "WHERE"**: board-specific file layouts, CLIs, APIs, and MCP tools for creating and managing epics, stories, and tickets.
 
-**For the "WHAT" and "HOW"**: Use `project-management` skill for story templates, estimation, and sprint workflows.
+**For the "WHAT" and "HOW"**: use the `project-management` skill for story templates, acceptance criteria, estimation, and sprint workflows.
 
 **Key capabilities**:
-- Create and update issues on ZenHub/Jira/Linear boards
-- Set story points/estimates in board-specific fields
-- Link issues to parent epics
-- Move issues between pipelines/columns
-- Manage sprints and board configuration
+- Create and update epics, stories, and tickets on any supported board
+- Set estimates in the board's dedicated field
+- Link stories to parent epics
+- Move items between statuses / pipelines / columns
+- Manage labels and assignees
+
+## Supported Board Types
+
+| Type | Where it lives | Needs | When to pick it |
+|------|----------------|-------|-----------------|
+| `markdown` *(default)* | `docs/Backlog/` in the project repo | Nothing beyond a text editor | Small team, backlog lives with code, no SaaS needed |
+| `github-issues` | Native GitHub Issues | `gh` CLI authenticated | Project is on GitHub, want issues visible and linkable to PRs |
+| `zenhub` | ZenHub (on top of GitHub) | ZenHub API token, MCP server | Team already on ZenHub, wants pipelines and sprints |
+| `jira` | Jira Cloud / Server | Jira MCP or REST auth | Enterprise, existing Jira instance |
+| `linear` | Linear | Linear API key | Team on Linear |
+
+Default: **markdown**. Switch by re-running the setup script.
 
 ## Critical Rules
 
 ### 1. Issue Creation Best Practices
-- ✅ **Use native issues when possible**
-  - ZenHub: Always use GitHub issues (NOT ZenHub-native)
-  - Jira: Use Jira issues
-  - Linear: Use Linear issues
-- ✅ **Story points in dedicated field** - Use board's estimate API, NOT title/description
-- ❌ **NEVER put story points in title** - Use `setIssueEstimate` API instead
+- **Use native issues** for the chosen board (ZenHub → GitHub issues, not ZenHub-native; Jira → Jira issues; Linear → Linear issues; markdown → files in `docs/Backlog/`; github-issues → GitHub Issues).
+- **Estimate in the dedicated field** — use the board's API/label/field for estimates, never hide them in the title.
+- **Never** put estimates in the title.
 
 ### 2. Acceptance Criteria Format
-- ✅ **ALWAYS use checkbox format** for trackability
+Always checkboxes, for trackability:
+
 ```markdown
 ## Acceptance Criteria
-- [ ] User can log in with email/password
+- [ ] Customer can sign in with email and password
 - [ ] Session expires after 24 hours
 - [ ] Error messages display for invalid credentials
 ```
-- ❌ **NEVER use non-checkbox format**
+
+Never use non-checkbox formats.
 
 ### 3. Australian English
-- ✅ **All issue titles, descriptions, comments** use Australian English spelling
-- ✅ normalise, organisation, authorisation, colour, behaviour
-- ❌ NOT: normalize, organization, authorization, color, behavior
+All titles, descriptions, comments, and labels use Australian English: organisation, colour, initialise, behaviour, authorisation, optimise, customise, prioritise, recognise. Exceptions: third-party product names and quoted upstream text (e.g., "Labels" in the GitHub UI).
 
 ### 4. Labels and Links
-- ✅ **Add labels during creation** (most boards don't allow updates after)
-- ✅ **Link to parent epic at creation** (easier than linking later)
-- ❌ **NEVER skip epic linking** for stories (breaks hierarchy tracking)
+- Add labels at creation time (ZenHub and some other boards don't allow updates after).
+- Link to the parent epic at creation (easier than linking later).
+- Never skip epic linking for stories — it breaks hierarchy tracking.
 
 ### 5. First-Time Setup Required
-- ✅ **CRITICAL**: Check if `.claude/agile-board-config.json` exists before using this skill
-- ✅ **Run setup script** if config missing: `python3 ~/.claude/skills/agile-board/scripts/setup.py`
-- ❌ **NEVER proceed** without valid board configuration
+- Check whether `.claude/agile-board-config.json` exists before using this skill.
+- If it's missing, run `python3 ~/.claude/skills/agile-board/scripts/setup.py`. For the markdown default, no token is needed — just accept the defaults.
+- Never proceed without a valid board configuration.
 
 ## First Time Setup (Per Project)
 
-**CRITICAL**: Before using this skill, check if `.claude/agile-board-config.json` exists in the current project.
+Run the setup wizard inside the project directory:
 
-### Improved Automated Setup Flow
-
-The setup script provides an intelligent, automated experience that minimizes manual input.
-
-**Interactive mode** (recommended):
 ```bash
 python3 ~/.claude/skills/agile-board/scripts/setup.py
 ```
 
-**What you provide**:
-1. Board type (ZenHub/Jira/Linear)
-2. API token (e.g., from app.zenhub.com → Settings → API Tokens)
-3. Select workspace from list (auto-fetched)
-4. Select default pipeline from list (auto-fetched)
-5. Default labels (optional)
-
-**What it auto-fetches** (ZenHub):
-- ✅ GitHub repository ID (via `gh` CLI)
-- ✅ Your ZenHub workspaces (via GraphQL API)
-- ✅ Workspace pipelines (via GraphQL API)
-- ✅ Organization ID (via GraphQL API)
+**What it asks**:
+1. Board type — defaults to `markdown` if you just press Enter
+2. For `markdown`: the backlog directory (default `docs/Backlog`) and optional default labels
+3. For `github-issues`: auto-detects the repo via `gh`, offers to create the conventional labels
+4. For `zenhub`/`jira`/`linear`: API token, workspace/project, default pipeline/status
 
 **What it configures**:
-1. `.claude/agile-board-config.json` - Project-local board settings
-2. `~/.claude.json` - MCP server configuration for this project
-3. `~/.claude/settings.json` - Permission wildcards to auto-approve MCP calls
-4. `.gitignore` - Excludes config file from version control
+1. `.claude/agile-board-config.json` — project-local board settings
+2. `~/.claude.json` — MCP server configuration (only for boards that use MCP)
+3. `~/.claude/settings.json` — permission wildcards to auto-approve MCP calls
+4. `.gitignore` — excludes the config file from version control
 
-**Config location**: Project-local, NOT in the skill directory
-- ✅ `/home/user/project-a/.claude/agile-board-config.json`
-- ❌ `~/.claude/skills/agile-board/config.json`
+**Config lives in the project, not the skill**:
+- Correct: `/home/user/project-a/.claude/agile-board-config.json`
+- Wrong: `~/.claude/skills/agile-board/config.json`
 
 **Non-interactive mode** (for automation):
+
 ```bash
+# markdown (default)
+python3 ~/.claude/skills/agile-board/scripts/setup.py --board-type markdown --force
+
+# github-issues
+python3 ~/.claude/skills/agile-board/scripts/setup.py \
+  --board-type github-issues \
+  --repo "owner/name" \
+  --create-labels \
+  --force
+
+# zenhub
 python3 ~/.claude/skills/agile-board/scripts/setup.py \
   --board-type zenhub \
   --api-token zh_xxx \
@@ -105,140 +114,135 @@ python3 ~/.claude/skills/agile-board/scripts/setup.py \
   --force
 ```
 
-### Automated Setup via Skill
-
-**If config is missing**, Claude Code automatically handles setup with GUI prompts:
-
-**Flow**:
-1. **Ask user for board type** (ZenHub/Jira/Linear) via `AskUserQuestion`
-2. **Ask for API token** via conversation
-3. **Auto-fetch GitHub repo ID** via `gh` CLI
-4. **Fetch workspaces** via ZenHub GraphQL API
-5. **Show workspace selection** via `AskUserQuestion` GUI
-6. **Fetch pipelines** for selected workspace via GraphQL API
-7. **Show pipeline selection** via `AskUserQuestion` GUI
-8. **Ask for default labels** via conversation (optional)
-9. **Run setup script** non-interactively with all values as CLI arguments
-
-**Example**:
-```bash
-python3 ~/.claude/skills/agile-board/scripts/setup.py \
-  --board-type zenhub \
-  --api-token "zh_xxx" \
-  --repository-id "R_kgDORAKQMg" \
-  --workspace-id "Z2lkOi8vcmFwdG9yL1dvcmtzcGFjZS82OTQ4YzNiYWYzNWNjNDAwMjFkYjI2Zjc" \
-  --organization-id "Z2lkOi8vcmFwdG9yL09yZ2FuaXphdGlvbi8xMjM0NTY" \
-  --default-pipeline-id "Z2lkOi8vcmFwdG9yL1BpcGVsaW5lLzM1MjUwMzk" \
-  --default-pipeline-name "Product Backlog" \
-  --default-labels "backend,python" \
-  --force
-```
-
-**Benefits**:
-- ✅ GUI workspace/pipeline selection (not terminal text input)
-- ✅ Script runs non-interactively (no prompts, only writes files)
-- ✅ All values validated before running script
-- ✅ Clear error messages if API calls fail
-
 ## Quick Start
 
-After setup, you can:
-- Create issues/tickets
-- Set story points/estimates
-- Link issues to parent epics
-- Move issues between pipelines/columns
+After setup:
+- Create epics and stories
+- Set estimates
+- Link stories to parent epics
+- Move items between statuses
 - Add labels and assignees
-- Manage sprints
+- Manage sprints (boards that support it)
 
 ## Model Selection
 
-**Recommended model**: Haiku (fast and cost-effective)
+**Recommended model**: Haiku (fast and cost-effective).
 
-**Why Haiku is appropriate**:
-- **MCP tool operations** - Straightforward API calls with defined parameters
-- **Simple CRUD operations** - Creating, reading, updating tickets
-- **Pipeline transitions** - Moving tickets between states
-- **No complex reasoning required** - All operations follow clear patterns
-- **High frequency operations** - Cost savings with faster model
+**Why Haiku**:
+- Operations are mostly file edits, CLI calls, or MCP tool invocations with defined parameters
+- Simple CRUD — creating, reading, updating items
+- Status transitions follow clear patterns
+- No complex reasoning required
+- High frequency — cost and latency matter
 
-**Operations this skill handles**:
-- `moveIssueToPipeline` - Simple state transition
-- `createIssue` - Template-based creation
-- `setIssueEstimate` - Setting numeric value
-- `assignIssues` - Adding assignees
-- All board-specific MCP tool calls
+## Board-Specific References
 
-## Board Types
+The SKILL loads the relevant reference file based on the configured `board_type`:
 
-This skill supports multiple board types through board-specific reference documentation:
-
-- **ZenHub**: See `references/zenhub.md` for MCP tool usage
-- **Jira**: See `references/jira.md` for REST API patterns
-- **Linear**: See `references/linear.md` for GraphQL queries
-
-The setup script configures which board type to use via the project's config file.
+- `references/markdown.md` — file layout, ID convention, and operations for the default markdown board
+- `references/github-issues.md` — `gh` CLI patterns and label conventions
+- `references/zenhub.md` — ZenHub MCP tools, field mappings, pipeline IDs
+- `references/jira.md` — Jira REST API patterns, custom fields
+- `references/linear.md` — Linear GraphQL queries, status IDs
 
 ## Common Operations
 
 ### Creating an Issue
 
-**Pre-creation** (use `project-management` skill):
-1. Draft story using story templates
+**Pre-creation** (use the `project-management` skill):
+1. Draft the story using story templates
 2. Write acceptance criteria
-3. Estimate using T-shirt sizing
+3. Estimate using T-shirt sizing or story points
 
 **Board creation** (use this skill):
-1. Create issue on board (via MCP or API)
-2. Set issue type
-3. Set estimate in dedicated field
-4. Link to parent epic
-5. Add labels (cannot change later!)
-6. Move to pipeline
+1. Create the item on the configured board
+2. Set the item type (epic/story)
+3. Set the estimate in the dedicated field
+4. Link to the parent epic
+5. Add labels (cannot be changed later on some boards)
+6. Move to the starting status / pipeline
 
-**Board-specific details**: See your board's reference file in `references/`
+**Board-specific details**: see your board's reference file in `references/`.
 
 ### Issue Hierarchy
 
 ```
 Epic (Level 3)
-  └── Story/Feature (Level 4)
+  └── Story / Feature (Level 4)
       └── Sub-task (Level 5)
 ```
 
-Link stories to parent epic for tracking.
+Every story links to its parent epic.
 
 ### Board-Specific Rules
 
 Different boards have different limitations:
 
+**markdown** (default):
+- Stories live as H3 sections inside an epic's file
+- Status is a `**Status**:` line
+- No cross-repo moves without a migration script
+
+**github-issues**:
+- Status tracked via `status:*` labels (or a GitHub Project's status field)
+- Parent epic referenced in the story body (`Parent epic: #42`)
+- Auto-close stories on PR merge via `Closes #NN`
+
 **ZenHub**:
-- ✅ Use GitHub issues (NOT ZenHub-native)
-- ✅ Set story points via `setIssueEstimate` API
-- ❌ Cannot update labels after creation
+- Use GitHub issues (not ZenHub-native)
+- Set estimates via `setIssueEstimate`
+- Cannot update labels after creation
 
 **Jira** (planned):
-- Story points in custom field
-- Can update labels after creation
+- Estimates in the story points custom field
+- Labels can be updated after creation
 
 **Linear** (planned):
 - Estimates in points or time
-- Can update labels after creation
+- Labels can be updated after creation
 
 ## Story Content & Sprint Workflows
 
-For story structure, templates, sprint planning, and velocity tracking:
-- **See `project-management` skill** for detailed guidance
+For story structure, templates, sprint planning, and velocity tracking, see the `project-management` skill.
 
-**Board-specific implementation**:
-- Use board's API/MCP tools to create issues with story content
-- Move issues between pipelines/sprints using board-specific tools
-- See `references/` for board-specific sprint operations (e.g., ZenHub GraphQL for adding issues to sprints)
+Board-specific implementation:
+- Use the board's file layout / CLI / MCP tools to create items with the story content
+- Move items between statuses using board-specific operations
+- See `references/` for board-specific sprint operations where supported
 
 ## Configuration
 
-The project's `.claude/agile-board-config.json` contains:
+`.claude/agile-board-config.json` examples:
 
 ```json
+// markdown
+{
+  "board_type": "markdown",
+  "backlog_dir": "docs/Backlog",
+  "default_labels": []
+}
+```
+
+```json
+// github-issues
+{
+  "board_type": "github-issues",
+  "repo": "owner/name",
+  "epic_label": "type:epic",
+  "story_label": "type:story",
+  "status_labels": {
+    "backlog": "status:backlog",
+    "in_progress": "status:in-progress",
+    "review": "status:review",
+    "done": "status:done",
+    "blocked": "status:blocked"
+  },
+  "default_labels": []
+}
+```
+
+```json
+// zenhub
 {
   "board_type": "zenhub",
   "workspace_id": "...",
@@ -250,61 +254,63 @@ The project's `.claude/agile-board-config.json` contains:
 }
 ```
 
-**Switching boards**: Delete `.claude/agile-board-config.json` and re-run setup script.
+**Switching boards**: delete `.claude/agile-board-config.json` and re-run the setup script.
 
-**Multi-project usage**: Each project has its own config, so you can use ZenHub in one project and Jira in another.
+**Multi-project usage**: each project has its own config, so one project can use markdown and another can use ZenHub.
 
 ## Troubleshooting
 
-### Issue: "config file not found"
+### "config file not found"
 
-**Solution**: Run setup script in the project directory:
+Run the setup script inside the project directory:
+
 ```bash
 cd /path/to/your/project
 python ~/.claude/skills/agile-board/scripts/setup.py
 ```
 
-### Issue: "Cannot update labels"
+### "Cannot update labels"
 
-**Cause**: Most board APIs don't support updating labels after creation
+Most SaaS boards don't support updating labels after creation. Add labels at creation time.
 
-**Solution**: Add labels during initial issue creation
+### "Parent epic not found"
 
-### Issue: "Parent epic not found"
+Cause: epic ID is incorrect, or the epic doesn't exist.
 
-**Cause**: Epic ID is incorrect or epic doesn't exist
+Fix:
+1. List available epics (markdown: scan `docs/Backlog/`; github-issues: `gh issue list --label type:epic`; zenhub/jira/linear: query the board)
+2. Verify the ID format matches your board type
+3. Ensure the epic exists before linking
 
-**Solution**:
-1. List available epics
-2. Verify epic ID format matches your board type
-3. Ensure epic exists before linking
+### "Estimate not showing"
 
-### Issue: "Story points not showing"
+Cause: estimate set in the wrong field (e.g., description instead of the dedicated field).
 
-**Cause**: Estimate set in wrong field (e.g., description instead of dedicated field)
+Fix: use the board's specific estimate mechanism — see `references/`.
 
-**Solution**: Use your board's specific estimate API call (see `references/`)
+### "Wrong board config loaded"
 
-### Issue: "Wrong board config loaded"
+Cause: working in a different project than expected.
 
-**Cause**: Working in different project than expected
-
-**Solution**: Check current directory - config is loaded from current project's `.claude/` directory
+Fix: check the current directory — config is loaded from the current project's `.claude/` directory.
 
 ## Related Skills
 
-- **project-management** - Story templates, estimation guide, sprint workflows
-- **developer-analysis** - Pre-implementation analysis, POC scripts, design proposals
-- **git-workflow** - Branch naming, commit conventions, PR creation
+- **project-management** — story templates, estimation guide, sprint workflows
+- **developer-analysis** — pre-implementation analysis, POC scripts, design proposals
+- **git-workflow** — branch naming, commit conventions, PR creation
+- **requirements-design** — produces the five numbered design docs (Business Guardrails, Press Release, Solution Design, Detailed Requirements, Architecture) that epics and stories implement
 
 ## References
 
 ### Workflow Documentation
-- `references/ticket-workflow.md` - **Ticket update workflow** throughout development lifecycle (commit, PR creation, PR review)
+- `references/ticket-workflow.md` — how items update through the development lifecycle (commit, PR creation, PR review, merge)
 
 ### Board-Specific Implementation
-- `references/zenhub.md` - ZenHub MCP tools, field mappings, pipeline IDs
-- `references/jira.md` - Jira REST API patterns, custom fields
-- `references/linear.md` - Linear GraphQL queries, status IDs
+- `references/markdown.md` — markdown board (default)
+- `references/github-issues.md` — GitHub Issues
+- `references/zenhub.md` — ZenHub MCP tools, field mappings, pipeline IDs
+- `references/jira.md` — Jira REST API patterns, custom fields
+- `references/linear.md` — Linear GraphQL queries, status IDs
 
-Choose your board type during setup, and the skill will reference the appropriate documentation.
+Choose the board type during setup, and the skill loads the appropriate reference.

@@ -329,7 +329,7 @@ See [agile-board/references/ticket-workflow.md](../../agile-board/references/tic
 ### 1. Check Acceptance Criteria
 
 **On every commit**, review the story's acceptance criteria:
-- ✅ Mark ACs as done where appropriate (use GitHub/ZenHub UI to check boxes)
+- ✅ Mark ACs as done where appropriate (use your agile board's UI to check the boxes — see the agile-board skill)
 - ❌ NEVER change or modify the ACs themselves
 - ✅ Only mark checkboxes, don't edit text
 

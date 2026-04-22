@@ -17,7 +17,7 @@ This skill provides the **"what" and "how"** of agile project management:
 - **How** to plan epics and releases
 - **How** to manage story dependencies
 
-For **"where"** to create stories (ZenHub/Jira/Linear), use the `agile-board` skill.
+For **"where"** to create stories (markdown (default), GitHub Issues, ZenHub, Jira, Linear), use the `agile-board` skill.
 
 ## Critical Rules
 
@@ -532,7 +532,7 @@ This is a **project-wide standard**, not optional.
 
 ## Related Skills
 
-- **agile-board** - Board-specific implementation (ZenHub/Jira/Linear MCP tools)
+- **agile-board** - Board-specific implementation (markdown (default), GitHub Issues, ZenHub, Jira, Linear)
 - **developer-analysis** - Pre-implementation analysis, POC scripts, design proposals (use BEFORE implementing stories)
 - **git-workflow** - Branch naming, commit conventions, PR creation
 

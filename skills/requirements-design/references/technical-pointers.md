@@ -363,7 +363,7 @@ This guide helps provide implementation guidance and references for development 
 - Run periodically, not every commit
 
 **Security Tests**:
-- Test authentication and authorization
+- Test authentication and authorisation
 - Scan for vulnerabilities (OWASP Top 10)
 - Penetration testing (external)
 - Run before releases
@@ -512,11 +512,11 @@ This guide helps provide implementation guidance and references for development 
    - Expected savings: 20-30ms
    - Implementation: Convert to async functions
 
-4. **OpenSearch Query Optimization**
+4. **OpenSearch Query Optimisation**
    - Problem: Complex queries are slow
    - Solution: Simplify query structure, use filters instead of queries where possible
    - Expected savings: 50-100ms
-   - Implementation: Profile queries, optimize based on slow query logs
+   - Implementation: Profile queries, optimise based on slow query logs
 
 **Monitoring**:
 - CloudWatch metric: `SearchLatencyP95`
@@ -542,7 +542,7 @@ This guide helps provide implementation guidance and references for development 
 - [ ] Default deny (explicit permissions required)
 - [ ] Principle of least privilege
 - [ ] Validate permissions on every request
-- [ ] Log authorization failures
+- [ ] Log authorisation failures
 
 **Input Validation**:
 - [ ] Validate all user input (API requests, file uploads)

@@ -26,14 +26,25 @@ def main():
     parser = argparse.ArgumentParser(
         description="Agile Board Setup Wizard - Configure board integration for the current project"
     )
-    parser.add_argument('--board-type', choices=['zenhub', 'jira', 'linear'], help='Board type')
+    parser.add_argument(
+        '--board-type',
+        choices=['markdown', 'github-issues', 'zenhub', 'jira', 'linear'],
+        help='Board type (default: markdown)',
+    )
     parser.add_argument('--force', action='store_true', help='Overwrite existing config without prompting')
+
+    # Markdown-specific arguments
+    parser.add_argument('--backlog-dir', help='Backlog directory for markdown board (default: docs/Backlog)')
+
+    # GitHub Issues-specific arguments
+    parser.add_argument('--repo', help='GitHub repo for github-issues board, as "owner/name" (auto-detected if omitted)')
+    parser.add_argument('--create-labels', action='store_true', help='Create conventional labels for github-issues board')
 
     # ZenHub-specific arguments
     parser.add_argument('--api-token', help='ZenHub API token')
     parser.add_argument('--workspace-id', help='ZenHub workspace ID')
-    parser.add_argument('--repository-id', help='GitHub repository ID')
-    parser.add_argument('--organization-id', help='ZenHub organization ID')
+    parser.add_argument('--repository-id', help='GitHub repository ID (ZenHub)')
+    parser.add_argument('--organization-id', help='ZenHub organisation ID')
     parser.add_argument('--default-pipeline-id', help='Default pipeline ID')
     parser.add_argument('--default-pipeline-name', help='Default pipeline name')
     parser.add_argument('--default-labels', help='Comma-separated list of default labels')
@@ -80,22 +91,29 @@ def main():
     # Determine board type (from args or interactive)
     if args.board_type:
         board_type = args.board_type
-        print(f"✅ Board type: {board_type.title()} (from args)")
+        print(f"✅ Board type: {board_type} (from args)")
         print()
     else:
         # Ask which board type
         print("Which agile board do you use?")
-        print("  1. ZenHub")
-        print("  2. Jira (planned)")
-        print("  3. Linear (planned)")
+        print("  1. Markdown files in docs/Backlog/  (default — no service, lives with the code)")
+        print("  2. GitHub Issues                    (via the gh CLI)")
+        print("  3. ZenHub")
+        print("  4. Jira (planned)")
+        print("  5. Linear (planned)")
         print()
 
-        board_choice = input("Enter choice (1-3): ").strip()
+        try:
+            board_choice = input("Enter choice (1-5) [1]: ").strip() or "1"
+        except EOFError:
+            board_choice = "1"
 
         board_types = {
-            "1": "zenhub",
-            "2": "jira",
-            "3": "linear"
+            "1": "markdown",
+            "2": "github-issues",
+            "3": "zenhub",
+            "4": "jira",
+            "5": "linear",
         }
 
         if board_choice not in board_types:
@@ -103,14 +121,22 @@ def main():
             sys.exit(1)
 
         board_type = board_types[board_choice]
-        print(f"✅ Selected: {board_type.title()}")
+        print(f"✅ Selected: {board_type}")
         print()
 
     # Collect board-specific configuration
     config = {"board_type": board_type}
     mcp_config = None
 
-    if board_type == "zenhub":
+    if board_type == "markdown":
+        config_data, mcp = setup_markdown(args)
+        config.update(config_data)
+        mcp_config = mcp
+    elif board_type == "github-issues":
+        config_data, mcp = setup_github_issues(args)
+        config.update(config_data)
+        mcp_config = mcp
+    elif board_type == "zenhub":
         config_data, mcp = setup_zenhub(args)
         config.update(config_data)
         mcp_config = mcp
@@ -235,6 +261,157 @@ def fetch_workspace_pipelines(api_token, workspace_id):
     except Exception as e:
         print(f"⚠️  Error parsing pipelines: {e}")
         return None, None
+
+
+def setup_markdown(args):
+    """Collect markdown-board configuration — no API, no token."""
+    print("Markdown Configuration")
+    print("-" * 50)
+    print()
+    print("Epics will live as Markdown files in your project repo.")
+    print()
+
+    backlog_dir = args.backlog_dir
+    if not backlog_dir:
+        if args.force:
+            backlog_dir = "docs/Backlog"
+        else:
+            try:
+                backlog_dir = input("Backlog directory [docs/Backlog]: ").strip() or "docs/Backlog"
+            except EOFError:
+                backlog_dir = "docs/Backlog"
+
+    # Default labels
+    if args.default_labels:
+        labels_input = args.default_labels
+        print(f"✅ Labels: {labels_input} (from args)")
+    elif args.force:
+        labels_input = ""
+    else:
+        try:
+            labels_input = input("Default labels (comma-separated, optional): ").strip()
+        except EOFError:
+            labels_input = ""
+    default_labels = [l.strip() for l in labels_input.split(',') if l.strip()]
+
+    # Create the backlog directory if it doesn't exist (relative to project_dir)
+    project_dir = Path.cwd()
+    backlog_path = project_dir / backlog_dir
+    backlog_path.mkdir(parents=True, exist_ok=True)
+    backlog_index = backlog_path / "backlog.md"
+    if not backlog_index.exists():
+        backlog_index.write_text(
+            "# Backlog\n\n"
+            "| ID | Title | Status | Stories | Labels |\n"
+            "|----|-------|--------|---------|--------|\n"
+        )
+        print(f"✅ Created {backlog_index}")
+    else:
+        print(f"ℹ️  Backlog index already exists at {backlog_index}")
+
+    return {
+        "backlog_dir": backlog_dir,
+        "default_labels": default_labels,
+    }, None  # No MCP config
+
+
+def setup_github_issues(args):
+    """Collect github-issues board configuration — uses the gh CLI."""
+    print("GitHub Issues Configuration")
+    print("-" * 50)
+    print()
+
+    # Check gh is installed and authenticated
+    try:
+        check = subprocess.run(["gh", "auth", "status"], capture_output=True, text=True)
+        if check.returncode != 0:
+            print("⚠️  gh CLI is not authenticated. Run: gh auth login")
+            print(check.stderr)
+            sys.exit(1)
+    except FileNotFoundError:
+        print("❌ gh CLI not found. Install: https://cli.github.com/")
+        sys.exit(1)
+
+    # Determine repo
+    repo = args.repo
+    if not repo:
+        result = subprocess.run(
+            ["gh", "repo", "view", "--json", "nameWithOwner", "--jq", ".nameWithOwner"],
+            capture_output=True, text=True,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            detected = result.stdout.strip()
+            if args.force:
+                repo = detected
+                print(f"✅ Repo: {repo} (auto-detected)")
+            else:
+                try:
+                    entered = input(f"Repo [{detected}]: ").strip()
+                    repo = entered or detected
+                except EOFError:
+                    repo = detected
+        else:
+            if args.force:
+                print("❌ Could not auto-detect repo in non-interactive mode. Pass --repo.")
+                sys.exit(1)
+            repo = input("Repo (owner/name): ").strip()
+
+    # Default labels
+    if args.default_labels:
+        labels_input = args.default_labels
+    elif args.force:
+        labels_input = ""
+    else:
+        try:
+            labels_input = input("Default labels (comma-separated, optional): ").strip()
+        except EOFError:
+            labels_input = ""
+    default_labels = [l.strip() for l in labels_input.split(',') if l.strip()]
+
+    # Offer to create conventional labels
+    create_labels = args.create_labels
+    if not create_labels and not args.force:
+        try:
+            answer = input("Create conventional labels (type:epic, type:story, status:*) on the repo? (y/N): ").strip().lower()
+            create_labels = answer == 'y'
+        except EOFError:
+            create_labels = False
+
+    if create_labels:
+        conventional = [
+            ("type:epic", "3E4B9E", "Epic (parent of stories)"),
+            ("type:story", "1D76DB", "Story (child of an epic)"),
+            ("status:backlog", "C5DEF5", "Waiting to be picked up"),
+            ("status:in-progress", "FBCA04", "Actively being worked on"),
+            ("status:review", "0E8A16", "In review / PR open"),
+            ("status:done", "6F42C1", "Completed"),
+            ("status:blocked", "B60205", "Blocked"),
+        ]
+        for name, colour, desc in conventional:
+            result = subprocess.run(
+                ["gh", "label", "create", name, "--color", colour, "--description", desc, "--repo", repo],
+                capture_output=True, text=True,
+            )
+            if result.returncode == 0:
+                print(f"  ✅ Created label: {name}")
+            elif "already exists" in (result.stderr or "").lower():
+                print(f"  ℹ️  Label already exists: {name}")
+            else:
+                print(f"  ⚠️  Could not create {name}: {result.stderr.strip()}")
+
+    return {
+        "repo": repo,
+        "epic_label": "type:epic",
+        "story_label": "type:story",
+        "status_labels": {
+            "backlog": "status:backlog",
+            "in_progress": "status:in-progress",
+            "review": "status:review",
+            "done": "status:done",
+            "blocked": "status:blocked",
+        },
+        "default_labels": default_labels,
+    }, None  # No MCP config — uses gh CLI directly
 
 
 def setup_zenhub(args):

@@ -1,9 +1,38 @@
 {
-  "board_type": "zenhub",
-  "workspace_id": "Z2lkOi8vcmFwdG9yL1dvcmtzcGFjZS8xMjM0NTY3",
-  "repository_id": "Z2lkOi8vcmFwdG9yL1JlcG9zaXRvcnkvMTM0NzMyMzU0",
-  "organization_id": "Z2lkOi8vcmFwdG9yL09yZ2FuaXphdGlvbi8xMjM0NTY",
-  "default_labels": ["backend", "python"],
-  "default_pipeline_id": "Z2lkOi8vcmFwdG9yL1BpcGVsaW5lLzM1MjUwMzk",
-  "default_pipeline_name": "Product Backlog"
+  "_comment": "Default board_type is 'markdown'. See references/ for each board's config shape.",
+
+  "_markdown_example": {
+    "board_type": "markdown",
+    "backlog_dir": "docs/Backlog",
+    "default_labels": []
+  },
+
+  "_github_issues_example": {
+    "board_type": "github-issues",
+    "repo": "owner/name",
+    "epic_label": "type:epic",
+    "story_label": "type:story",
+    "status_labels": {
+      "backlog": "status:backlog",
+      "in_progress": "status:in-progress",
+      "review": "status:review",
+      "done": "status:done",
+      "blocked": "status:blocked"
+    },
+    "default_labels": []
+  },
+
+  "_zenhub_example": {
+    "board_type": "zenhub",
+    "workspace_id": "Z2lkOi8vcmFwdG9yL1dvcmtzcGFjZS8xMjM0NTY3",
+    "repository_id": "Z2lkOi8vcmFwdG9yL1JlcG9zaXRvcnkvMTM0NzMyMzU0",
+    "organization_id": "Z2lkOi8vcmFwdG9yL09yZ2FuaXphdGlvbi8xMjM0NTY",
+    "default_labels": ["backend", "python"],
+    "default_pipeline_id": "Z2lkOi8vcmFwdG9yL1BpcGVsaW5lLzM1MjUwMzk",
+    "default_pipeline_name": "Product Backlog"
+  },
+
+  "board_type": "markdown",
+  "backlog_dir": "docs/Backlog",
+  "default_labels": []
 }

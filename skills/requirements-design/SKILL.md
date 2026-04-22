@@ -1,6 +1,6 @@
 ---
 name: requirements-design
-description: "World-class requirements gathering and design documentation. Use when: (1) Starting a new project or major feature, (2) Challenging and validating requirements with research, (3) Creating the five core documents: Constraints, Customer Value, Solution Design, Detailed Requirements, and Architecture. Proactively researches alternatives and uses Working Backwards methodology."
+description: "World-class requirements gathering and design documentation. Use when: (1) Starting a new project or major feature, (2) Challenging and validating requirements with research, (3) Creating the five numbered core documents: (1) Business Guardrails, (2) Press Release, (3) Solution Design, (4) Detailed Requirements, (5) Architecture. Proactively researches alternatives and uses Amazon's Working Backwards press-release methodology."
 ---
 
 # Requirements & Design Skill
@@ -21,24 +21,25 @@ You should actively use tools to research:
 
 ## Your Mission: The Five Core Documents
 
-**Every project gets the same five documents for consistency:**
+**Every project gets the same five numbered documents for consistency. Always refer to them by their numbers (1–5) to keep the sequence clear.**
 
-1. **Constraints** - Project Boundaries (Always First)
+1. **Business Guardrails** — Project Boundaries (Always First)
    - Platform mandates, architecture principles, compliance requirements
-   - Budget caps, timeline deadlines, team constraints
+   - Budget caps, timeline deadlines, team capacity
    - Created BEFORE other documents to guide all recommendations
-   - File: `01-constraints-{project-name}.md`
-   - Template: [project-constraints-template.md](references/project-constraints-template.md)
+   - Sometimes called "non-negotiables" or "constraints" informally; the document name is **Business Guardrails**
+   - File: `01-business-guardrails-{project-name}.md`
+   - Template: [business-guardrails-template.md](references/business-guardrails-template.md)
 
-2. **Customer Value** - Why Will We Win?
-   - Customer value proposition and competitive advantage
-   - Amazon's Working Backwards methodology: Press release, FAQs, customer experience mockups
+2. **Press Release** — Why Will We Win?
+   - Customer value proposition and competitive advantage, framed as a future-dated press release
+   - Amazon's Working Backwards methodology: press release first, then FAQs and customer-experience mockups
    - Explains WHY customers will choose this and love it
-   - Audience: Business stakeholders, product managers, executives, investors
-   - File: `02-customer-value-{project-name}.md`
-   - Template: [working-backwards-template.md](references/working-backwards-template.md)
+   - Audience: business stakeholders, product managers, executives, investors
+   - File: `02-press-release-{project-name}.md`
+   - Template: [press-release-template.md](references/press-release-template.md)
 
-3. **Solution Design** - High-Level End-to-End Architecture
+3. **Solution Design** — High-Level End-to-End Architecture
    - Problem statement, solution overview, key design decisions
    - End-to-end architecture with multiple diagram types (component, sequence, deployment)
    - Technology choices with rationale (alternatives considered, trade-offs)
@@ -46,20 +47,20 @@ You should actively use tools to research:
    - Integration examples and operational considerations
    - Explains HOW we'll deliver value at the architecture level
    - Bridges business context and technical implementation
-   - Audience: Technical stakeholders, architects, engineering teams, product managers
+   - Audience: technical stakeholders, architects, engineering teams, product managers
    - File: `03-solution-design-{project-name}.md` or `03-end-to-end-architecture-{project-name}.md`
    - Template: [product-overview-template.md](references/product-overview-template.md)
    - **Gold Standard Example:** See funnelback's `end-to-end-solution-architecture.md`
 
-4. **Requirements** - Detailed Specifications
+4. **Detailed Requirements** — Specifications
    - Comprehensive functional and non-functional requirements
    - User stories with acceptance criteria
-   - Technical constraints and dependencies
+   - Technical dependencies
    - Detailed enough to create epics, stories, and effort estimates
    - File: `04-requirements-{project-name}.md`
    - Template: [detailed-requirements-template.md](references/detailed-requirements-template.md)
 
-5. **Architecture** - Detailed Technical Blueprint
+5. **Architecture** — Detailed Technical Blueprint
    - Detailed component architecture and implementation specifications
    - Service boundaries, module structure, class diagrams, deployment strategy
    - API contracts with full request/response schemas
@@ -74,26 +75,26 @@ You should actively use tools to research:
    - Template: [architecture-template.md](references/architecture-template.md)
 
 **Why all five?**
-- **Consistency**: Same structure across all projects
-- **Different Audiences**: Customer Value for business, Solution Design bridges both, Requirements/Architecture for technical teams
-- **Complete Picture**: Value proposition + Delivery approach + Detailed specs + Implementation blueprint
-- **Cross-referencing**: Documents reinforce and link to each other
-- **Two Levels of Architecture**: Solution Design (high-level end-to-end overview for stakeholders) + Architecture (detailed implementation specs for developers)
+- **Consistency**: same structure across all projects
+- **Different Audiences**: Press Release (2) for business, Solution Design (3) bridges both, Detailed Requirements (4) / Architecture (5) for technical teams
+- **Complete Picture**: boundaries + value proposition + delivery approach + detailed specs + implementation blueprint
+- **Cross-referencing**: documents reinforce and link to each other
+- **Two Levels of Architecture**: Solution Design (3) (high-level end-to-end overview for stakeholders) + Architecture (5) (detailed implementation specs for developers)
 
 **The approach determines ORDER, not which documents exist:**
-- **Customer-First**: Constraints → Customer Value → Solution Design → Requirements → Architecture
-- **Technical-First**: Constraints → Solution Design → Customer Value → Requirements → Architecture
-- **Parallel**: Constraints → [Customer Value + Solution Design] → Requirements → Architecture
+- **Customer-First**: (1) → (2) → (3) → (4) → (5) — Business Guardrails → Press Release → Solution Design → Detailed Requirements → Architecture
+- **Technical-First**: (1) → (3) → (2) → (4) → (5) — Business Guardrails → Solution Design → Press Release → Detailed Requirements → Architecture
+- **Parallel**: (1) → [(2) + (3)] → (4) → (5) — Business Guardrails → [Press Release + Solution Design in parallel] → Detailed Requirements → Architecture
 
 ## Process Overview
 
-### Phase 0: Capture Constraints (ALWAYS FIRST)
+### Phase 0: Capture Business Guardrails (ALWAYS FIRST)
 1. Ask about non-negotiable requirements upfront
-2. Create `01-constraints-{name}.md` document (Project Boundaries)
+2. Create `01-business-guardrails-{name}.md` document (Project Boundaries)
 3. Use this to guide all subsequent recommendations
-4. Distinguish hard constraints from flexible preferences
+4. Distinguish hard guardrails from flexible preferences
 
-**See "Constraints & Reusability" section below for detailed guidance.**
+**See "Business Guardrails & Reusability" section below for detailed guidance.**
 
 ### Phase 1: Requirements Gathering
 1. Understand the project context through structured questions
@@ -103,7 +104,7 @@ You should actively use tools to research:
 
 Use the structured questionnaire from [references/requirements-gathering.md](references/requirements-gathering.md). Ask questions progressively, not all at once.
 
-**REQUIRED: You MUST use the AskUserQuestion UI tool for all option-based questions** - it provides a much better experience than text-based questions. Use it for:
+**REQUIRED: You MUST use the AskUserQuestion UI tool for all option-based questions** — it provides a much better experience than text-based questions. Use it for:
 - Choosing between approaches (Customer-First vs Technical-First)
 - Technology selections and build vs buy decisions
 - Prioritization questions (MoSCoW, feature ranking)
@@ -117,12 +118,12 @@ The UI tool makes it easier for users to understand options and make informed de
 Create all five documents in the order determined by chosen approach. Show drafts and get feedback before moving to next document. Store documents in `docs/Design/` by default.
 
 **Before presenting each document to user:**
-1. **Red Team Review**: Review your own work as a skeptical CTO/CFO
+1. **Red Team Review**: review your own work as a sceptical CTO/CFO
    - What assumptions did I make that aren't validated?
    - What alternatives didn't I explore?
    - What risks haven't I called out?
    - What could go wrong with this approach?
-2. **Assumption Validation**: List assumptions explicitly for user to confirm
+2. **Assumption Validation**: list assumptions explicitly for user to confirm
 3. **Present concerns**: "Here are things I'm concerned about that we should discuss..."
 
 ### Phase 3: Story Decomposition (Optional)
@@ -243,12 +244,12 @@ WebSearch: "[system name] API documentation"
 WebSearch: "[system name] integration examples"
 ```
 
-### Assumption Validation (Before Finalizing)
+### Assumption Validation (Before Finalising)
 
-**Before finalizing constraints or documents**, explicitly show user your assumptions:
+**Before finalising guardrails or documents**, explicitly show user your assumptions:
 
 ```
-"Before I finalize [constraints/requirements/architecture], here are assumptions I'm making - please correct any that are wrong:
+"Before I finalise [guardrails/requirements/architecture], here are assumptions I'm making — please correct any that are wrong:
 
 **Timeline Assumptions:**
 - ✓/✗ 6 months is realistic because [reasoning based on team size, scope]
@@ -281,7 +282,7 @@ Which assumptions are wrong? Which need validation before we proceed?"
 
 When user provides SharePoint URL for documentation location or existing requirements:
 
-**1. Document the location cleanly in constraints:**
+**1. Document the location cleanly in the Business Guardrails doc:**
 ```markdown
 **Documentation Location:**
 - Platform: SharePoint Online
@@ -368,19 +369,19 @@ python ~/.claude/skills/requirements-design/scripts/convert-docs-to-md.py \
 - Format-specific conversion notes
 - Troubleshooting
 
-## Constraints & Reusability
+## Business Guardrails & Reusability
 
-### Capturing Non-Negotiable Constraints
+### Capturing Non-Negotiable Guardrails
 
 **CRITICAL: Before challenging anything, capture the non-negotiables.**
 
-Every project has constraints that are truly non-negotiable:
+Every project has guardrails that are truly non-negotiable:
 - **Platform mandates**: "Must use Azure" or "AWS only"
 - **Architecture principles**: "Reuse over Buy over Build", "Secure by Design"
 - **Security principles**: "Never store secrets in code/config", "Use secret managers", "Encrypt all data", "Principle of least privilege"
 - **Compliance requirements**: "Must meet GDPR, HIPAA, SOC 2, ISO 27001, PCI-DSS, CPS 234"
 - **Data sovereignty**: "All data must remain in EU", "No cross-border data transfers"
-- **Organizational mandates**: "Must use enterprise SSO" or "Must integrate with ServiceNow"
+- **Organisational mandates**: "Must use enterprise SSO" or "Must integrate with ServiceNow"
 - **Source control**: "Must use GitHub Enterprise in company-name org"
 - **Documentation storage**: "Design docs in repo, user docs in Confluence"
 - **Budget hard caps**: "Cannot exceed $50K"
@@ -389,13 +390,13 @@ Every project has constraints that are truly non-negotiable:
 - **Existing architecture**: "Current system uses PostgreSQL + Redis", "Monolithic Rails app we must integrate with"
 - **Team capacity**: "Solo developer working 20 hrs/week", "Team of 3 with no ops expertise", "Cannot hire more people"
 
-### How to Capture Constraints
+### How to Capture Business Guardrails
 
 **Ask upfront** (first or second question):
 ```
-"Before we dive in, let me understand your constraints and context:
+"Before we dive in, let me understand your guardrails and context:
 
-**Non-Negotiable Constraints** (hard requirements):
+**Non-Negotiable Guardrails** (hard requirements):
 - Platform: Must use specific cloud provider (Azure vs AWS)?
 - Security: Secure by Design principles (prefer zero secrets via OIDC/Managed Identity, never hardcode credentials, encrypt data)?
 - Compliance: Must meet specific standards (GDPR, HIPAA, SOC 2, ISO 27001, PCI-DSS, CPS 234)?
@@ -410,7 +411,7 @@ Every project has constraints that are truly non-negotiable:
 - **Regulatory (Industry-Specific)**: Industry regulations? (HACCP for food, APRA for finance, etc.)
 - **Operational Capacity**: Who maintains post-launch? What skills do they have? What training is needed?
 - Architecture principles: Any guiding principles (e.g., 'Reuse over Buy over Build', 'Secure by Design')?
-- Organizational mandates: Required teams, tools, processes (SSO, ServiceNow)?
+- Organisational mandates: Required teams, tools, processes (SSO, ServiceNow)?
 - Budget/Timeline: Hard caps or deadlines?
 - Technology: Approved/banned technologies (languages, frameworks)?
 
@@ -435,31 +436,31 @@ Every project has constraints that are truly non-negotiable:
 These will help me provide recommendations that work within your reality."
 ```
 
-### Document Constraints Immediately
+### Document Business Guardrails Immediately
 
-Create `docs/Design/01-constraints-{project-name}.md` using [project-constraints-template.md](references/project-constraints-template.md).
+Create `docs/Design/01-business-guardrails-{project-name}.md` using [business-guardrails-template.md](references/business-guardrails-template.md).
 
 **Structure**:
 ```markdown
-## Non-Negotiable Constraints
+## Non-Negotiable Guardrails
 
-**Constraint**: Must use Azure (not AWS)
+**Guardrail**: Must use Azure (not AWS)
 - **Type**: Platform Mandate
 - **Rationale**: Enterprise agreement, existing infrastructure
 - **Impact**: All cloud services must be Azure-native
-- **Flexibility**: None - this is absolute
+- **Flexibility**: None — this is absolute
 
-**Constraint**: Budget cap at $100K
+**Guardrail**: Budget cap at $100K
 - **Type**: Budget Constraint
 - **Rationale**: Approved budget allocation
-- **Impact**: Must optimize for cost
+- **Impact**: Must optimise for cost
 - **Flexibility**: Can request +$25K with business case (1-month approval)
 
-## Flexible Preferences (Not Constraints)
+## Flexible Preferences (Not Guardrails)
 
 **Preference**: Would prefer microservices
 - **Type**: Architectural Preference
-- **Flexibility**: OPEN TO CHALLENGE - simpler alternatives acceptable
+- **Flexibility**: OPEN TO CHALLENGE — simpler alternatives acceptable
 ```
 
 ### Designing for Reusability: Extract Abstract Requirements
@@ -639,9 +640,9 @@ A document is NOT complete until:
 5. **Prioritize**: Must-have vs nice-to-have NFRs
 
 **NFRs go in**:
-- Constraints document (security/compliance constraints)
-- Requirements document (detailed NFRs with metrics)
-- Architecture document (how NFRs are achieved)
+- (1) Business Guardrails (security/compliance constraints)
+- (4) Detailed Requirements (detailed NFRs with metrics)
+- (5) Architecture (how NFRs are achieved)
 
 ## Handling Legacy Systems
 
@@ -670,13 +671,13 @@ A document is NOT complete until:
 | **API Facade** | Keep legacy, add new UI | Preserve logic, modernize UX | Legacy remains, ongoing maintenance |
 | **Data Migration** | Move to new system | Fresh start, modern stack | One-time migration risk |
 
-### 3. Document Legacy Constraints
+### 3. Document Legacy System Guardrails
 
-Capture in constraints document:
+Capture in the Business Guardrails doc:
 ```markdown
-## Legacy System Constraints
+## Legacy System Guardrails
 
-**Constraint**: Must integrate with existing ERP system (SAP)
+**Guardrail**: Must integrate with existing ERP system (SAP)
 - **Type**: Integration Requirement
 - **Impact**: Cannot change order data model (must match SAP)
 - **Integration**: REST API, 1000 calls/day limit
@@ -1085,7 +1086,7 @@ Authorization: Bearer <jwt_token>
 | Vague requirements | Ask: "Walk me through a specific scenario" |
 
 **Quick Start Checklist**:
-- [ ] Ask about constraints FIRST
+- [ ] Ask about business guardrails FIRST
 - [ ] **REQUIRED**: Use AskUserQuestion UI tool whenever presenting options (NEVER use text for option-based questions)
 - [ ] Research before accepting technology choices
 - [ ] Capture unknowns in "Open Questions"
@@ -1111,9 +1112,9 @@ User: "We have 10K PDF user manuals. Customers can't find answers. We get 500 su
 You: "Got it. So the goal is to reduce support calls by helping customers self-serve. Let me ask about constraints..."
 ```
 
-**Step 2: Capture Constraints** (10 minutes)
+**Step 2: Capture Business Guardrails** (10 minutes)
 ```
-You: "Before we design anything, are there any non-negotiable constraints?
+You: "Before we design anything, are there any non-negotiable guardrails?
 - Must use specific cloud provider?
 - Budget limits?
 - Timeline deadline?
@@ -1121,7 +1122,7 @@ You: "Before we design anything, are there any non-negotiable constraints?
 
 User: "Must use AWS (we're all-in on AWS). Budget is $5K/month max. Need it in 6 weeks."
 
-You: [Creates 01-constraints-document-search.md with AWS and budget constraints]
+You: [Creates 01-business-guardrails-document-search.md with AWS platform mandate and budget/timeline guardrails]
 ```
 
 **Step 3: Challenge & Research** (15 minutes)
@@ -1171,11 +1172,11 @@ You: [Creates 05-architecture-document-search.md]
 **Step 5: Review & Handoff** (30 minutes)
 ```
 You: "We've created all five documents:
-✅ Constraints: AWS, $5K/month budget, 6 weeks
-✅ Solution Design: OpenSearch-powered search
-✅ Requirements: 3 epics, 12 stories, estimated 4 weeks
-✅ Architecture: Detailed technical design
-✅ Customer Value: Reduce support calls by 60%
+✅ (1) Business Guardrails: AWS, $5K/month budget, 6 weeks
+✅ (2) Press Release: Reduce support calls by 60%
+✅ (3) Solution Design: OpenSearch-powered search
+✅ (4) Detailed Requirements: 3 epics, 12 stories, estimated 4 weeks
+✅ (5) Architecture: Detailed technical design
 
 Ready to handoff to /developer-analysis for technical design,
 or to /project-management for sprint planning?"
@@ -1206,7 +1207,7 @@ AskUserQuestion with questions:
 
 **If first-timer**:
 1. Acknowledge: "Great! I'll guide you through the process step-by-step."
-2. Set expectations: "We'll work through: understanding the problem → capturing constraints → researching options → creating documents. I'll explain each step as we go."
+2. Set expectations: "We'll work through: understanding the problem → capturing business guardrails → researching options → creating documents. I'll explain each step as we go."
 3. Reference the example: "You can also review the [end-to-end example](SKILL.md:512-600) to see what a complete session looks like."
 4. Proceed with the standard process below, but **add more explanations** at each step
 
@@ -1240,7 +1241,7 @@ Use AskUserQuestion for:
 - Propose how to incorporate existing content into new structure
 - Track what's carried forward vs what's new
 
-**IMPORTANT: After capturing constraints, then start challenging everything else**:
+**IMPORTANT: After capturing business guardrails, then start challenging everything else**:
 - If user says "build X", ask "What problem does X solve?"
 - If user mentions a technology, ask "Why that technology?" and research alternatives
 - If requirements are vague, push for specifics with examples
@@ -1362,12 +1363,12 @@ Focus on Basic first, Performance second, Excitement last.
 **If you used text-based questions for option selection, you did it wrong.** Review the "CRITICAL INTERACTION RULE" in Key Principles.
 
 ### Requirements Gathering Complete When:
-- [ ] All core questions answered (users, scale, constraints, success metrics)
+- [ ] All core questions answered (users, scale, guardrails, success metrics)
 - [ ] All user personas identified with needs defined
 - [ ] Success metrics defined and measurable
 - [ ] Scope clearly defined (in-scope, out-of-scope, deferred)
 - [ ] Open questions documented (not all resolved, but all captured)
-- [ ] Constraints document created and reviewed
+- [ ] (1) Business Guardrails document created and reviewed
 
 ### Each Document Complete When:
 - [ ] All sections filled in with substance (not placeholders)
@@ -1379,7 +1380,7 @@ Focus on Basic first, Performance second, Excitement last.
 
 ### Ready to Handoff When:
 - [ ] All five documents at ✅ Complete status
-- [ ] Constraints reviewed and approved
+- [ ] (1) Business Guardrails reviewed and approved
 - [ ] Critical open questions resolved (blocking items)
 - [ ] Documents reviewed by stakeholders
 - [ ] Clear next steps identified
@@ -1530,7 +1531,7 @@ You: "That scale doesn't need Kubernetes complexity. Here are simpler options:
 
 **Why**: Complex architectures have high operational overhead. Start simple, scale when needed.
 
-### ❌ Anti-Pattern 5: Ignoring Constraints
+### ❌ Anti-Pattern 5: Ignoring Business Guardrails
 
 **Wrong**:
 ```
@@ -1545,7 +1546,7 @@ You: "Since Azure is required, let's use Azure Container Apps
      instead of AWS ECS. Here's the Azure-native approach..."
 ```
 
-**Why**: Constraints are non-negotiable. Work creatively within them, don't ignore them.
+**Why**: Business guardrails are non-negotiable. Work creatively within them, don't ignore them.
 
 ### ❌ Anti-Pattern 6: Blocking on Unknowns
 
@@ -1668,14 +1669,14 @@ Is this a new feature?
 ## Reference Materials
 
 Throughout this process, reference:
-- [requirements-gathering.md](references/requirements-gathering.md) - Structured questionnaire
-- [product-overview-template.md](references/product-overview-template.md) - High-level doc template (Solution Design)
-- [detailed-requirements-template.md](references/detailed-requirements-template.md) - Requirements template
-- [architecture-template.md](references/architecture-template.md) - Architecture template
-- [project-constraints-template.md](references/project-constraints-template.md) - Constraints template
-- [working-backwards-template.md](references/working-backwards-template.md) - Customer Value template
-- [story-decomposition.md](references/story-decomposition.md) - Initial epic/story breakdown from requirements (handoff to `/project-management` for refinement)
-- [technical-pointers.md](references/technical-pointers.md) - Guide for providing technical references
+- [requirements-gathering.md](references/requirements-gathering.md) — Structured questionnaire
+- [business-guardrails-template.md](references/business-guardrails-template.md) — (1) Business Guardrails template
+- [press-release-template.md](references/press-release-template.md) — (2) Press Release template (Amazon's Working Backwards methodology)
+- [product-overview-template.md](references/product-overview-template.md) — (3) Solution Design template
+- [detailed-requirements-template.md](references/detailed-requirements-template.md) — (4) Detailed Requirements template
+- [architecture-template.md](references/architecture-template.md) — (5) Architecture template
+- [story-decomposition.md](references/story-decomposition.md) — Initial epic/story breakdown from requirements (handoff to `/project-management` for refinement)
+- [technical-pointers.md](references/technical-pointers.md) — Guide for providing technical references
 
 ## Key Principles
 

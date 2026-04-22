@@ -21,8 +21,10 @@
 
 | Document | Location | Purpose |
 |----------|----------|---------|
-| Product Overview | [Link] | High-level vision and benefits |
-| Architecture Design | [Link] | Technical blueprint |
+| (1) Business Guardrails | [Link] | Non-negotiable project boundaries |
+| (2) Press Release | [Link] | Customer value proposition (Working Backwards) |
+| (3) Solution Design | [Link] | High-level vision and end-to-end architecture |
+| (5) Architecture | [Link] | Technical blueprint |
 | [Other docs] | [Link] | [Purpose] |
 
 ---
@@ -42,7 +44,7 @@
 
 ### 1.2 Client & Stakeholders
 
-- **End Client**: [Organization name]
+- **End Client**: [Organisation name]
 - **Delivery Partner**: [Partner name, if applicable]
 - **Project Sponsor**: [Name/role]
 - **Product Owner**: [Name/role]
@@ -143,12 +145,12 @@ Example:
 - [Reason 1]
 - [Reason 2]
 
-**Module Organization**:
+**Module Organisation**:
 ```
 project-root/
 ├── core/
 │   ├── api/          # Shared API framework
-│   ├── auth/         # Authentication/authorization
+│   ├── auth/         # Authentication/authorisation
 │   ├── [module]/     # Core reusable modules
 ├── services/
 │   ├── service-a/    # Service-specific code
@@ -196,9 +198,9 @@ project-root/
 
 ## 3. Functional Requirements
 
-### 3.1 Requirement Organization
+### 3.1 Requirement Organisation
 
-Requirements are organized by Epic (major feature area). Each Epic contains:
+Requirements are organised by Epic (major feature area). Each Epic contains:
 - User stories with acceptance criteria
 - API contracts
 - Data models
@@ -573,6 +575,8 @@ X-Request-ID: <uuid>
   - Setup: See `/developer-analysis` for environment setup POC
 
 ### 8.2 Business Constraints
+
+> Primary source of truth: the (1) Business Guardrails document. Summarise the relevant constraints here and link back.
 
 **Budget**: [Total budget, breakdown by category]
 

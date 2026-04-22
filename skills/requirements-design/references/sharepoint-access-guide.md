@@ -232,7 +232,7 @@ az login --allow-no-subscriptions --tenant <correct-tenant-id>
 
 **Finding correct tenant ID:**
 1. Look at SharePoint URL: `https://argonconsult.sharepoint.com` → Try tenant "argonconsult"
-2. Check with organization admin
+2. Check with organisation admin
 3. Try `az login` without tenant - select correct one from list
 
 ### Issue: "Could not access site" or "No permission"

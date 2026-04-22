@@ -20,7 +20,7 @@ This guide helps break down **requirements documents into epics and user stories
 - ❌ Estimation (story points/T-shirt sizing) → See project-management skill
 - ❌ Sprint planning → See project-management skill
 - ❌ Ongoing story refinement → See project-management skill
-- ❌ Creating stories on boards (ZenHub/Jira) → See agile-board skill
+- ❌ Creating stories on boards (markdown, GitHub Issues, ZenHub, Jira, Linear) → See agile-board skill
 
 ---
 
@@ -140,7 +140,7 @@ Examples:
 
 ## Step 3: Create Epic Catalog
 
-Use this structure to organize all epics and stories from requirements:
+Use this structure to organise all epics and stories from requirements:
 
 ```markdown
 # Epic and Story Catalog: [Project Name]
@@ -210,7 +210,7 @@ Use this structure to organize all epics and stories from requirements:
    - T-shirt sizing estimates (XS/S/M/L/XL)
    - Technical notes
    - Definition of Done
-2. Use `/agile-board` to create stories on board (ZenHub/Jira/Linear)
+2. Use `/agile-board` to create stories on your configured board (markdown (default), GitHub Issues, ZenHub, Jira, Linear)
 3. Use `/project-management` for sprint planning
 ```
 
@@ -230,7 +230,7 @@ Use this structure to organize all epics and stories from requirements:
 - Refine later with `/project-management`
 
 **Non-Functional Requirements** → **Technical Stories**
-- Performance requirements → Performance optimization stories
+- Performance requirements → Performance optimisation stories
 - Security requirements → Security implementation stories
 - Operational requirements → Monitoring/observability stories
 
@@ -334,8 +334,8 @@ Use /project-management to refine the stories in Epic 1:
 ```
 
 ### 2. Create Stories on Board
-Use `/agile-board` to create the stories on your project board:
-- ZenHub, Jira, Linear, or other board
+Use `/agile-board` to create the stories on your configured project board:
+- Markdown (default), GitHub Issues, ZenHub, Jira, or Linear
 - Set priority, assignee, sprint
 
 ### 3. Plan Sprints
@@ -397,7 +397,7 @@ Use /project-management to:
 3. Identify which stories can be done in Sprint 1
 
 Use /agile-board to:
-1. Create these stories on ZenHub board
+1. Create these stories on your configured agile board
 2. Assign to team members
 3. Add to appropriate sprint
 ```
@@ -445,7 +445,7 @@ Use /agile-board to:
 └─ Creates Definition of Done
 ↓
 /agile-board
-└─ Creates stories on board (ZenHub/Jira/Linear)
+└─ Creates stories on your configured board (markdown (default), GitHub Issues, ZenHub, Jira, Linear)
 ```
 
 ---

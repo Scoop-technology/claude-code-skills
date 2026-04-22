@@ -612,7 +612,7 @@ After merging:
 - [ ] Delete feature branch (automated with `--delete-branch`)
 - [ ] Verify deployment to dev environment
 - [ ] Monitor for errors in logs/metrics
-- [ ] Update ZenHub story status to "Done"
+- [ ] Update story status to "Done" on your agile board (see the agile-board skill)
 - [ ] Notify team in Slack (if significant change)
 
 ## Additional Resources

@@ -11,87 +11,140 @@ Reusable Claude Code skills and commands for agile project management and develo
 
 - **requirements-design** - Gather requirements and create world-class design documentation
 - **git-workflow** - GitFlow branching strategy and commit conventions
-- **agile-board** - Board-specific implementation (ZenHub/Jira/Linear)
+- **agile-board** - Board-specific implementation (markdown (default), GitHub Issues, ZenHub, Jira, Linear)
 - **project-management** - Story templates, estimation, sprint planning, epic planning
 - **developer-analysis** - Engineering analysis before implementation
 - **testing** - Testing strategy, coverage analysis, and quality assurance
 
 ## Installation
 
-### 1. Clone this repository
+Two install modes are supported. **Global is the normal choice.** Per-project is an alternative for people who need project-scoped isolation.
 
-Clone this repository to wherever you keep your projects:
+| Mode | Where it goes | Use when |
+|------|---------------|----------|
+| **Global** *(default)* | `~/.claude/skills/` and `~/.claude/commands/` | One consistent set of skills across every project you work on |
+| **Per-project** | `<project>/.claude/skills/` and `<project>/.claude/commands/` | Working across multiple organisations and you want a per-project copy, sharing skills with a team via the project repo, or global install is blocked on your machine |
+
+Global install uses symlinks, so `git pull` in the skills repo updates every project at once. Per-project install copies files, so each project is independent (re-run the installer after `git pull` to refresh).
+
+### 1. Clone this repository
 
 ```bash
 git clone <your-repo-url>
 cd claude-code-skills
 ```
 
-### 2. Run the install script
+### 2. Run the installer
 
-The install script creates symlinks from `~/.claude/skills/` and `~/.claude/commands/` to the directories/files in this repository.
+#### Global install (default)
 
-**Linux/Mac:**
+**Linux / Mac:**
 ```bash
 ./install.sh
 ```
 
 **Windows (PowerShell):**
 
-Windows requires admin privileges to create symbolic links (or Developer Mode enabled). Follow these steps:
+Windows needs admin rights or Developer Mode to create symlinks.
 
-**Option 1: Run PowerShell as Administrator (Recommended for first-time setup)**
-1. Right-click the Windows Start button → Select "Windows PowerShell (Admin)" or "Terminal (Admin)"
-2. Navigate to the repository directory:
-   - In VS Code, right-click the `install.ps1` file → "Copy Path"
-   - In PowerShell Admin: `cd "C:\path\you\copied"`
-3. Run the install script:
+1. **Run PowerShell as Administrator** — right-click Start → "Windows PowerShell (Admin)" — then:
    ```powershell
+   cd C:\path\to\claude-code-skills
    .\install.ps1
    ```
 
-**Option 2: Enable Developer Mode (No admin needed for future installs)**
-1. Settings → Privacy & Security → For developers
-2. Enable "Developer Mode"
-3. Restart PowerShell (no admin needed)
-4. Navigate to the repository and run:
+2. **Or enable Developer Mode** (one-time, then no admin needed) — Settings → Privacy & Security → For developers → "Developer Mode" on — then:
    ```powershell
-   cd path\to\claude-code-skills
+   cd C:\path\to\claude-code-skills
    .\install.ps1
    ```
+
+If Windows global install is blocked (no admin, no Developer Mode, or you want a per-project copy anyway), use the per-project install below — it uses plain file copies and needs neither.
+
+#### Per-project install (alternative)
+
+Installs into the project's `.claude/` folder by copying files.
+
+**Linux / Mac:**
+```bash
+cd /path/to/your/project
+/path/to/claude-code-skills/install.sh --project
+```
+
+**Windows (PowerShell):**
+```powershell
+cd C:\path\to\your\project
+C:\path\to\claude-code-skills\install.ps1 -Project
+```
+
+You can also pass the project path explicitly instead of `cd`-ing:
+```bash
+./install.sh --project /path/to/your/project
+```
+```powershell
+.\install.ps1 -Project C:\path\to\your\project
+```
+
+**After a per-project install, decide whether to commit or ignore the installed files:**
+
+- **Share with teammates** — commit `.claude/skills/` and `.claude/commands/` so they get the same skills on `git pull`:
+  ```bash
+  git add .claude/skills .claude/commands
+  git commit -m "chore: add Claude Code skills and commands"
+  ```
+
+- **Keep local-only** — pass `--gitignore` to have the installer add the folders to `.gitignore` for you:
+  ```bash
+  ./install.sh --project --gitignore
+  ```
+  ```powershell
+  .\install.ps1 -Project -Gitignore
+  ```
+  Teammates will need to run their own install.
+
+(`.claude/` folders are **not** ignored by default — if you do nothing, the installed files will be picked up by `git status`.)
+
+**Advanced — per-project with symlinks** (solo dev, same machine, not for git-sharing):
+```bash
+./install.sh --project --symlink
+```
+```powershell
+.\install.ps1 -Project -Symlink
+```
+Don't commit symlinked `.claude/` folders — the links point at your local checkout and won't work on teammates' machines.
 
 ### 3. Update skills
 
-To get the latest skill updates:
-
-```bash
-cd /path/to/claude-code-skills
-git pull
-```
-
-The symlinks ensure Claude Code immediately uses the updated skills and commands.
+- **Global install**: `git pull` in the skills repo — symlinks pick up changes automatically.
+- **Per-project install**: re-run the install command after `git pull`. One-liner:
+  ```bash
+  cd /path/to/claude-code-skills && git pull && cd - && /path/to/claude-code-skills/install.sh --project
+  ```
 
 ## What Gets Installed
 
-The install script:
-1. Creates `~/.claude/skills/` and `~/.claude/commands/` directories if they don't exist
-2. Symlinks each skill directory from `skills/` into `~/.claude/skills/`
-3. Symlinks each command file from `commands/` into `~/.claude/commands/`
-4. Makes skills and commands available globally for all your projects
-5. Skills auto-load when relevant, commands are invoked with slash syntax (e.g., `/commit`)
+- `skills/` → each skill directory becomes available to Claude Code
+- `commands/` → each `*.md` becomes a slash command (`/commit`, `/pr`, `/story`, etc.)
 
-## Per-Project Setup
+Global install symlinks them into `~/.claude/skills/` and `~/.claude/commands/`. Per-project install copies them into `<project>/.claude/skills/` and `<project>/.claude/commands/`.
 
-### Agile Board Configuration
+Claude Code loads project-local skills/commands in addition to global ones; project-local takes precedence when both exist.
 
-After installing skills, configure the agile board for each project:
+## Per-Project Agile Board Setup
+
+After installing the skills (either mode), configure the agile board for each project. The default is markdown files in the project repo — no token or service required:
 
 ```bash
 cd /path/to/your/project
 python /path/to/claude-code-skills/skills/agile-board/scripts/setup.py
 ```
 
-This creates a project-local `.claude/agile-board-config.json` with your board settings.
+Supported board types:
+- **markdown** (default) — epics as files in `docs/Backlog/`, stories as sections within
+- **github-issues** — native GitHub Issues via the `gh` CLI
+- **zenhub**, **jira**, **linear** — SaaS boards (API token / MCP setup)
+
+The setup writes `.claude/agile-board-config.json` in the project. This file is automatically added to `.gitignore` by the setup script (it can contain project-specific IDs and tokens).
 
 ## Available Commands
 
@@ -134,6 +187,8 @@ Board-specific implementation for creating and managing issues.
 **Automatically triggers when:** Creating issues, managing sprints, updating ticket status
 
 **Supported boards:**
+- Markdown files (default — zero-config, local files)
+- GitHub Issues (via `gh` CLI)
 - ZenHub (with MCP integration)
 - Jira (REST API)
 - Linear (GraphQL)
@@ -192,13 +247,13 @@ Comprehensive requirements gathering and design documentation creation.
 **Automatically triggers when:** Starting a new project or feature, gathering requirements, creating design documentation
 
 **Key features:**
-- **Active architecture guidance** - Challenges assumptions, researches alternatives, suggests improvements
-- **Five core documents** - Constraints, Customer Value, Solution Design, Requirements, Architecture
-- **Multiple approaches** - Customer-First, Technical-First, or Parallel document creation
-- **Initial story decomposition** - Break requirements into epics and high-level stories (handoff to project-management for refinement)
-- **Technical pointers** - Specs, patterns, code references for implementation
-- **Working Backwards** - Amazon methodology for customer-driven design
-- **Reusability focus** - Design for abstraction and portability across organizations
+- **Active architecture guidance** — Challenges assumptions, researches alternatives, suggests improvements
+- **Five numbered core documents** — (1) Business Guardrails, (2) Press Release, (3) Solution Design, (4) Detailed Requirements, (5) Architecture
+- **Multiple approaches** — Customer-First, Technical-First, or Parallel document creation
+- **Initial story decomposition** — Break requirements into epics and high-level stories (handoff to project-management for refinement)
+- **Technical pointers** — Specs, patterns, code references for implementation
+- **Working Backwards** — Amazon's methodology for customer-driven design, used in the (2) Press Release document
+- **Reusability focus** — Design for abstraction and portability across organisations
 
 **Integration:**
 - Creates requirements → handoff to `/project-management` for detailed story refinement (AC, estimation, sprint planning)

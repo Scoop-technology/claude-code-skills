@@ -318,7 +318,7 @@ Bullet points
 
 **[00:08]** Today we'll discuss the livestock allocation system.
 
-**[00:15]** The main goal is to optimize livestock assignment based on customer requirements.
+**[00:15]** The main goal is to optimise livestock assignment based on customer requirements.
 
 **[01:30]** Key constraints include delivery schedules and animal welfare standards.
 ```

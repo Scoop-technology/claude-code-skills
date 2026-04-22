@@ -23,9 +23,8 @@ When this command is invoked:
    - **IMPORTANT: No AI attribution** - Do not add "Co-Authored-By: Claude" or similar to comments
 
 3. **Post to board**:
-   - Load the **agile-board** skill to post comment using board's API
-   - Currently supports ZenHub (via MCP tools)
-   - Jira and Linear support planned for future
+   - Load the **agile-board** skill to post the comment using your board's API
+   - Supports markdown (default), GitHub Issues, ZenHub, Jira, and Linear — see the agile-board skill for board-specific implementation
 
 ## Use Cases
 

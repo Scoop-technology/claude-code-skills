@@ -1,43 +1,43 @@
-# Project Constraints Template
+# Business Guardrails Template
 
-# Project Constraints: [Project Name]
+# Business Guardrails: [Project Name]
 
 **Last Updated**: [Date]
 **Project**: [Project Name]
 **Status**: 🚧 In Progress | 📝 Draft | ✅ Complete
-**Reviewed By**: [Names/Roles who approved these constraints]
+**Reviewed By**: [Names/Roles who approved these guardrails]
 
 ---
 
 ## Purpose of This Document
 
-This document captures the **non-negotiable constraints** and **guiding principles** for this project. These constraints define the boundaries within which design and implementation decisions must be made.
+This is the **(1) Business Guardrails** document — the first of the five core requirements-and-design documents. It captures the **non-negotiable guardrails** and **guiding principles** for this project. These guardrails define the boundaries within which design and implementation decisions must be made.
 
 **Key Distinction**:
-- ✅ **Constraints** (Non-Negotiable): Must be respected, documented here
+- ✅ **Guardrails** (Non-Negotiable): Must be respected, documented here
 - ℹ️ **Preferences** (Flexible): Can be challenged, documented separately
 
 ---
 
 ## Summary
 
-**Critical Constraints**:
-1. [Most important constraint, e.g., "Must use Azure"]
+**Critical Guardrails**:
+1. [Most important guardrail, e.g., "Must use Azure"]
 2. [Second most important, e.g., "Must launch by Q2 2026"]
 3. [Third most important, e.g., "Budget cap: $100K"]
 
 **Flexibility Level**: [Low | Medium | High]
 - Low: Most decisions are constrained
 - Medium: Some flexibility within boundaries
-- High: Few hard constraints, mostly principles
+- High: Few hard guardrails, mostly principles
 
 ---
 
-## Non-Negotiable Constraints
+## Non-Negotiable Guardrails
 
-### 1. Platform & Infrastructure Constraints
+### 1. Platform & Infrastructure Guardrails
 
-#### Constraint: [Platform Mandate]
+#### Guardrail: [Platform Mandate]
 
 **Description**: [e.g., "All services must run on Azure"]
 
@@ -63,7 +63,7 @@ This document captures the **non-negotiable constraints** and **guiding principl
 
 ---
 
-#### Constraint: [Technology Standard]
+#### Guardrail: [Technology Standard]
 
 **Description**: [e.g., "Only Python, TypeScript, and Java are approved languages"]
 
@@ -94,7 +94,7 @@ This document captures the **non-negotiable constraints** and **guiding principl
 
 #### Principle: [e.g., "Reuse over Buy over Build"]
 
-**Description**: Prioritize reusing existing solutions, then buying commercial services, then building custom only as last resort
+**Description**: Prioritise reusing existing solutions, then buying commercial services, then building custom only as last resort
 
 **Type**: Architecture Principle | Design Philosophy | Strategic Direction
 
@@ -152,7 +152,7 @@ This document captures the **non-negotiable constraints** and **guiding principl
   - GKE → GCP services: Workload Identity (no service account keys)
   - Azure services → Azure services: Managed Identity (no passwords)
   - Kubernetes → Cloud APIs: Workload Identity Federation
-- **Benefits**: Zero secrets to manage, no rotation needed, no risk of unauthorized access to secret stores
+- **Benefits**: Zero secrets to manage, no rotation needed, no risk of unauthorised access to secret stores
 
 **2. Use Secret Managers (Fallback Only)**
 - ⚠️ **ONLY** when identity-based auth isn't available (legacy systems, third-party APIs requiring API keys)
@@ -179,12 +179,12 @@ This document captures the **non-negotiable constraints** and **guiding principl
 
 **4. Zero Trust Architecture**
 - Never trust, always verify
-- Verify explicitly (authenticate and authorize every request)
+- Verify explicitly (authenticate and authorise every request)
 - Use least privilege access
 - Assume breach (segment access, monitor everything)
 
 **5. Input Validation & Output Encoding**
-- Never trust user input (validate, sanitize, escape)
+- Never trust user input (validate, sanitise, escape)
 - Prevent injection attacks (SQL injection, XSS, command injection)
 - Use parameterized queries, prepared statements
 - Encode output based on context (HTML, JSON, URL)
@@ -301,9 +301,9 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 - [ ] CI/CD pipeline fails if secrets detected in commits
 
 **Application Security**:
-- [ ] All database queries use parameterized queries (no string concatenation)
-- [ ] All user input validated and sanitized
-- [ ] All API endpoints have authentication and authorization
+- [ ] All database queries use parameterised queries (no string concatenation)
+- [ ] All user input validated and sanitised
+- [ ] All API endpoints have authentication and authorisation
 - [ ] HTTPS everywhere (no HTTP, even in dev)
 - [ ] Security headers configured (CSP, HSTS, X-Frame-Options)
 - [ ] Rate limiting on all public endpoints
@@ -329,7 +329,7 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 - Tokens: Short-lived (1 hour max), refresh token rotation
 ```
 
-**Authentication & Authorization**:
+**Authentication & Authorisation**:
 ```markdown
 **Authentication**:
 - Use established protocols: OAuth 2.0, OIDC, SAML 2.0
@@ -337,10 +337,10 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 - Password requirements: min 12 chars, complexity rules
 - Account lockout after failed attempts (5 attempts → 15 min lockout)
 
-**Authorization**:
+**Authorisation**:
 - Role-based access control (RBAC) with defined roles
 - Attribute-based access control (ABAC) for complex permissions
-- API endpoints: Check both authentication AND authorization
+- API endpoints: Check both authentication AND authorisation
 - Database: Row-level security for multi-tenant data
 ```
 
@@ -418,7 +418,7 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 ```
 ✅ Good: "API keys stored in AWS Secrets Manager, fetched at startup, rotated every 90 days. Pre-commit hooks scan for secrets."
 
-✅ Good: "All user input validated with Joi schema validation before processing. SQL queries use parameterized statements only."
+✅ Good: "All user input validated with Joi schema validation before processing. SQL queries use parameterised statements only."
 
 ✅ Good: "Database encrypted at rest (AES-256), TLS 1.3 for all traffic, passwords hashed with Argon2."
 
@@ -439,7 +439,7 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 
 ### 3. Compliance & Security Requirements
 
-#### Constraint: [e.g., "Must comply with GDPR"]
+#### Guardrail: [e.g., "Must comply with GDPR"]
 
 **Description**: All systems handling EU personal data must comply with GDPR
 
@@ -473,14 +473,14 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 
 ---
 
-#### Constraint: [e.g., "Must use Okta for SSO"]
+#### Guardrail: [e.g., "Must use Okta for SSO"]
 
 **Description**: All applications must authenticate users via enterprise Okta SSO
 
-**Type**: Organizational Mandate | Security Policy
+**Type**: Organisational Mandate | Security Policy
 
 **Rationale**:
-- [Centralized identity management]
+- [Centralised identity management]
 - [Security policy - no application-specific passwords]
 - [Compliance - SAML SSO required for SOC 2]
 
@@ -502,7 +502,7 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 
 ---
 
-#### Constraint: [Data Sovereignty]
+#### Guardrail: [Data Sovereignty]
 
 **Description**: All data must be stored and processed within specific geographic regions
 
@@ -535,7 +535,7 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 
 ---
 
-#### Constraint: [Compliance Standards]
+#### Guardrail: [Compliance Standards]
 
 **Description**: System must comply with specific industry/security standards
 
@@ -565,7 +565,7 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 - [ISO 27001 demonstrates security maturity to enterprise customers]
 
 **Impact on Design**:
-- [Must implement centralized logging to SIEM]
+- [Must implement centralised logging to SIEM]
 - [Must use HSM or key vault for encryption keys]
 - [Must implement network segmentation]
 - [Must design for audit trails on all sensitive operations]
@@ -598,7 +598,7 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 
 **Description**: [Overview of existing system architecture, if any]
 
-**Type**: Greenfield | Brownfield | Hybrid | Legacy Modernization
+**Type**: Greenfield | Brownfield | Hybrid | Legacy Modernisation
 
 **Existing Systems**:
 | System/Service | Purpose | Technology Stack | Status | Integration Points |
@@ -668,15 +668,15 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 
 ### 5. Development & Documentation Infrastructure
 
-#### Constraint: [Source Control System]
+#### Guardrail: [Source Control System]
 
-**Description**: Source code repository and organization structure
+**Description**: Source code repository and organisation structure
 
-**Type**: Organizational Standard | Tooling Requirement
+**Type**: Organisational Standard | Tooling Requirement
 
 **Specific Requirements**:
 - **Platform**: [e.g., "GitHub Enterprise", "GitLab", "Bitbucket", "Azure DevOps"]
-- **Organization**: [e.g., "github.com/company-name"]
+- **Organisation**: [e.g., "github.com/company-name"]
 - **Repository Structure**:
   - [e.g., "Monorepo: company-name/platform"]
   - [e.g., "Multi-repo: company-name/service-name"]
@@ -685,7 +685,7 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 
 **Rationale**:
 - [Enterprise GitHub license already purchased]
-- [Standardized across organization for consistency]
+- [Standardised across organisation for consistency]
 - [Integration with CI/CD and security scanning tools]
 
 **Impact on Design**:
@@ -696,13 +696,13 @@ logger.info(f"User {user_id} authenticated")  # No password/token
 
 **Repository Setup**:
 ```
-Organization: github.com/company-name
+Organisation: github.com/company-name
 Repository: company-name/project-name
 Branches: main (production), develop (integration), feature/* (development)
 Access: Engineering team (write), Security team (read), Contractors (read on specific repos)
 ```
 
-**Flexibility**: None (organizational standard)
+**Flexibility**: None (organisational standard)
 
 **Verification**:
 - [IT configures repository according to template]
@@ -710,11 +710,11 @@ Access: Engineering team (write), Security team (read), Contractors (read on spe
 
 ---
 
-#### Constraint: [Documentation Storage]
+#### Guardrail: [Documentation Storage]
 
 **Description**: Where project and technical documentation must be maintained
 
-**Type**: Organizational Standard | Knowledge Management
+**Type**: Organisational Standard | Knowledge Management
 
 **Specific Requirements**:
 - **Design Documents**: [e.g., "Stored in docs/Design/ in repository"]
@@ -725,7 +725,7 @@ Access: Engineering team (write), Security team (read), Contractors (read on spe
 
 **Rationale**:
 - [Single source of truth for each doc type]
-- [Searchability across organization]
+- [Searchability across organisation]
 - [Version control for technical docs]
 - [Access control and permissions]
 
@@ -757,11 +757,11 @@ Access: Engineering team (write), Security team (read), Contractors (read on spe
 
 ---
 
-#### Constraint: [Language & Localization Standards]
+#### Guardrail: [Language & Localisation Standards]
 
-**Description**: Written language, dialect, and localization standards for all content
+**Description**: Written language, dialect, and localisation standards for all content
 
-**Type**: Style Guide | Organizational Standard | User Experience Requirement
+**Type**: Style Guide | Organisational Standard | User Experience Requirement
 
 **Language & Dialect**:
 - **Primary Language**: [e.g., "Australian English (en-AU)", "US English (en-US)", "British English (en-GB)"]
@@ -771,7 +771,7 @@ Access: Engineering team (write), Security team (read), Contractors (read on spe
 
 **Rationale**:
 - [Consistency across all documentation and code]
-- [Matches organization's location and customer base (Australia)]
+- [Matches organisation's location and customer base (Australia)]
 - [Aligns with brand voice and customer expectations]
 - [Reduces confusion from mixed spelling (color vs colour)]
 
@@ -817,16 +817,16 @@ class UserOrganization:
 - [All developers must use Australian English in code and docs]
 - [Code linters should check spelling (e.g., codespell with en-AU dictionary)]
 - [UI components must format dates/times according to locale]
-- [APIs must accept and return localized date/time formats]
+- [APIs must accept and return localised date/time formats]
 - [Translation strategy if multi-language support needed later]
 
 **Tools & Enforcement**:
 - **Spell checker**: [e.g., "VS Code with Australian English dictionary"]
 - **Linter**: [e.g., "codespell configured for en-AU"]
-- **Style guide**: [e.g., "Link to organization's style guide"]
+- **Style guide**: [e.g., "Link to organisation's style guide"]
 - **PR reviews**: [e.g., "Reviewers check for language consistency"]
 
-**Flexibility**: Low (organizational standard)
+**Flexibility**: Low (organisational standard)
 - [Exception for technical terms that are always US English (e.g., "color" in CSS/HTML)]
 - [Exception for third-party library names and APIs (use their naming)]
 
@@ -869,7 +869,7 @@ Comment: # Initialize colour values for the organization (mixed)
 
 ### 6. Budget & Resource Constraints
 
-#### Constraint: [Budget Cap]
+#### Guardrail: [Budget Cap]
 
 **Description**: Total project budget capped at $100,000
 
@@ -886,7 +886,7 @@ Comment: # Initialize colour values for the organization (mixed)
 - [ROI target: break even within 18 months]
 
 **Impact on Design**:
-- [Must optimize for cost - prefer PaaS over IaaS]
+- [Must optimise for cost - prefer PaaS over IaaS]
 - [Must size infrastructure conservatively]
 - [Must evaluate build vs buy carefully]
 - [Must consider open-source alternatives]
@@ -902,7 +902,7 @@ Comment: # Initialize colour values for the organization (mixed)
 
 ---
 
-#### Constraint: [Timeline Deadline]
+#### Guardrail: [Timeline Deadline]
 
 **Description**: Must launch by June 30, 2026
 
@@ -923,7 +923,7 @@ Comment: # Initialize colour values for the organization (mixed)
 | Jun 30, 2026 | Launch | Absolute |
 
 **Impact on Design**:
-- [Scope must be ruthlessly prioritized]
+- [Scope must be ruthlessly prioritised]
 - [MVP-first approach required]
 - [May need to defer nice-to-have features to Phase 2]
 - [Technical debt acceptable if contained]
@@ -940,9 +940,9 @@ Comment: # Initialize colour values for the organization (mixed)
 
 > **Purpose**: Document who is doing the work and what constraints that creates.
 
-#### Constraint: [Team Composition & Capacity]
+#### Guardrail: [Team Composition & Capacity]
 
-**Description**: [Describe who is building this - solo developer, small team, large organization, etc.]
+**Description**: [Describe who is building this - solo developer, small team, large organisation, etc.]
 
 **Type**: Resource Constraint | Capacity Limitation | Skills Constraint
 
@@ -973,11 +973,11 @@ Comment: # Initialize colour values for the organization (mixed)
 
 **Scenario 3: Established Team**
 - **Team Size**: [e.g., "12 engineers across 3 squads"]
-- **Specializations**: [e.g., "Backend squad (4), Frontend squad (4), Platform squad (4)"]
+- **Specialisations**: [e.g., "Backend squad (4), Frontend squad (4), Platform squad (4)"]
 - **Support Functions**: [e.g., "Dedicated DevOps (2), QA (3), Security (shared)"]
 - **Skills**: [Document team-wide capabilities]
 
-**Rationale for Constraints**:
+**Rationale for Guardrails**:
 - [Budget constraints - cannot hire]
 - [Timeline - working solo means slower delivery]
 - [Skills gaps - team needs to learn new tech]
@@ -1001,7 +1001,7 @@ Comment: # Initialize colour values for the organization (mixed)
 
 ---
 
-#### Constraint: [Required Process/Team Involvement]
+#### Guardrail: [Required Process/Team Involvement]
 
 **Description**: Security team must review before production deployment
 
@@ -1033,7 +1033,7 @@ Comment: # Initialize colour values for the organization (mixed)
 
 ---
 
-## Flexible Preferences (Not Constraints)
+## Flexible Preferences (Not Guardrails)
 
 These are preferences that can be challenged with data/rationale:
 
@@ -1063,13 +1063,13 @@ These are preferences that can be challenged with data/rationale:
 - [REST is acceptable alternative]
 - [Recommend approach based on requirements]
 
-**Challenge Welcome**: Yes - analyze trade-offs and recommend
+**Challenge Welcome**: Yes — analyse trade-offs and recommend
 
 ---
 
-## How to Work with These Constraints
+## How to Work with These Guardrails
 
-### Respect Absolute Constraints
+### Respect Absolute Guardrails
 ✅ **Do**:
 - Accept platform mandates (Azure vs AWS)
 - Follow architecture principles (Reuse > Buy > Build)
@@ -1083,33 +1083,33 @@ These are preferences that can be challenged with data/rationale:
 - Ignore budget or timeline constraints
 - Skip required processes or reviews
 
-### Work Creatively Within Constraints
+### Work Creatively Within Guardrails
 Examples:
 - "Since Azure is required, let's use Azure Container Apps instead of Kubernetes"
 - "To meet budget, let's use PaaS services instead of building infrastructure"
 - "Given timeline, let's defer feature X to Phase 2 and focus on compliance"
-- "Since team is small, let's use managed services to minimize operational burden"
+- "Since team is small, let's use managed services to minimise operational burden"
 
 ### Challenge Gently When Appropriate
 When to challenge (respectfully):
-- Constraint seems to contradict other constraints
-- Constraint has major cost/complexity implications
-- Constraint lacks clear rationale
+- Guardrail seems to contradict other guardrails
+- Guardrail has major cost/complexity implications
+- Guardrail lacks clear rationale
 - Better alternative exists that meets same goals
 
 How to challenge:
 ```
-"I understand [constraint]. I researched [alternatives] and found [option] achieves
+"I understand [guardrail]. I researched [alternatives] and found [option] achieves
 the same goal with [benefits]. Given [context], would you be open to [alternative]?
 
-If not, I'll work within the constraint and optimize accordingly."
+If not, I'll work within the guardrail and optimise accordingly."
 ```
 
 ---
 
-## Constraint Change Log
+## Guardrail Change Log
 
-| Date | Constraint | Change | Reason | Approved By |
+| Date | Guardrail | Change | Reason | Approved By |
 |------|-----------|--------|--------|-------------|
 | 2025-01-15 | Budget | Increased from $80K to $100K | Additional features requested | VP Engineering |
 | 2025-02-01 | Platform | Added exception process for AWS | Cost comparison needed | Enterprise Architecture |
@@ -1118,9 +1118,9 @@ If not, I'll work within the constraint and optimize accordingly."
 
 ## Open Questions & Unknowns
 
-> **CRITICAL**: These must be resolved before finalizing constraints. Escalate if blocked.
+> **CRITICAL**: These must be resolved before finalising guardrails. Escalate if blocked.
 
-### Constraint Clarifications
+### Guardrail Clarifications
 
 | # | Question | Status | Notes/Decision |
 |---|----------|--------|----------------|
@@ -1139,11 +1139,11 @@ If not, I'll work within the constraint and optimize accordingly."
 
 ## Contact & Escalation
 
-**Questions about constraints**: [Team/person who can clarify]
+**Questions about guardrails**: [Team/person who can clarify]
 
 **Request exception**: [Process and who to contact]
 
-**Escalation**: [Who to escalate to if constraint is blocking progress]
+**Escalation**: [Who to escalate to if guardrail is blocking progress]
 
 ---
 

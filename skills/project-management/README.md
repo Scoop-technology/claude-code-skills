@@ -29,7 +29,7 @@ Claude loads this skill when you:
 - **How** to estimate complexity (T-shirt sizing)
 - **How** to plan and run sprints
 
-**Board-agnostic** - Works with any agile board (ZenHub, Jira, Linear, etc.)
+**Board-agnostic** - Works with any agile board (markdown (default), GitHub Issues, ZenHub, Jira, Linear)
 
 ## What This Skill Does NOT Provide
 
@@ -81,7 +81,7 @@ Claude loads this skill when you:
 
 ## Related Skills
 
-- **agile-board** - Board-specific implementation (ZenHub/Jira/Linear)
+- **agile-board** - Board-specific implementation (markdown (default), GitHub Issues, ZenHub, Jira, Linear)
 - **git-workflow** - Branch naming, commit conventions, PR creation
 
 ## Best Practices

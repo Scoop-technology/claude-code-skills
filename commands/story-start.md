@@ -15,7 +15,7 @@ When this command is invoked:
 
 1. **Identify the story**:
    - Ask for story ID/number if not provided
-   - Use **agile-board** skill to fetch story details from board (ZenHub/Jira/Linear)
+   - Use **agile-board** skill to fetch story details from your configured board (markdown (default), GitHub Issues, ZenHub, Jira, Linear)
    - Review description, acceptance criteria, and dependencies
 
 2. **Create feature branch**:

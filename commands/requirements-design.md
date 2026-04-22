@@ -1,6 +1,6 @@
 ---
 name: requirements-design
-description: Gather requirements and create comprehensive design documentation. Produces five core documents: Constraints, Customer Value, Solution Design, Detailed Requirements, and Architecture. Use when starting a new project or major feature.
+description: Gather requirements and create comprehensive design documentation. Produces five numbered core documents: (1) Business Guardrails, (2) Press Release, (3) Solution Design, (4) Detailed Requirements, and (5) Architecture. Use when starting a new project or major feature.
 disable-model-invocation: true
 ---
 
@@ -18,14 +18,14 @@ When this command is invoked:
    - If **No**: Proceed with standard process
 
 2. **Load the requirements-design skill** for:
-   - Capturing non-negotiable constraints (platforms, compliance, budget, timeline)
+   - Capturing non-negotiable business guardrails (platforms, compliance, budget, timeline)
    - Challenging assumptions and researching alternatives
-   - Creating 5 core documents:
-     1. **Constraints** - Project boundaries and guiding principles
-     2. **Customer Value** - Value proposition (Working Backwards methodology)
-     3. **Solution Design** - High-level delivery approach
-     4. **Requirements** - Detailed functional/non-functional specifications
-     5. **Architecture** - Technical blueprint with component diagrams
+   - Creating the five numbered core documents:
+     1. **Business Guardrails** — Project boundaries and guiding principles
+     2. **Press Release** — Customer value proposition (Amazon's Working Backwards methodology)
+     3. **Solution Design** — High-level delivery approach
+     4. **Detailed Requirements** — Functional/non-functional specifications
+     5. **Architecture** — Technical blueprint with component diagrams
    - Optional: Story decomposition, effort estimation, technical pointers
 
 3. **Active architecture guidance**:
@@ -40,8 +40,8 @@ When this command is invoked:
      - `/testing` - Define test strategy from requirements
      - `/project-management` - Create board tickets and plan sprints
 
-**Output**: All 5 documents in `docs/Design/` directory, production-ready for implementation.
+**Output**: All five documents in `docs/Design/` directory, production-ready for implementation.
 
-**Typical session**: 2-4 hours for complete requirements and design documentation.
+**Typical session**: 2–4 hours for complete requirements and design documentation.
 
 The skill contains comprehensive templates, first-timer guidance, and end-to-end examples.

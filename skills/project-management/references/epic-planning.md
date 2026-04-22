@@ -311,10 +311,7 @@ Project B: Document search service
 ### Tracking Dependencies
 
 **In board tools**:
-- Use dependency/blocker relationships (see `agile-board` skill)
-- ZenHub: `createBlockage(blockingIssueId, blockedIssueId)`
-- Jira: Link issues with "blocks" relationship
-- Linear: Create blocker relationships
+- Use dependency/blocker relationships — see the `agile-board` skill for board-specific implementation (markdown, GitHub Issues, ZenHub, Jira, Linear all support blocker tracking in their own way)
 
 **Dependency matrix** (for complex epics):
 

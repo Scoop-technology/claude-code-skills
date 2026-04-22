@@ -1,6 +1,6 @@
-# Working Backwards Template
+# Press Release Template
 
-The "Working Backwards" approach starts with the customer experience and works backwards to the implementation. This template follows Amazon's methodology for product development.
+This template produces the **(2) Press Release** document — the second of the five core requirements-and-design documents. It follows Amazon's Working Backwards methodology: start with the customer experience framed as a future-dated press release, then work backwards to implementation.
 
 **Status**: 🚧 In Progress | 📝 Draft | ✅ Complete
 
@@ -518,19 +518,19 @@ User clicks: "View Details" on first result
 
 ## Transitioning to Technical Documents
 
-Once working backwards documents are complete:
+Once the (2) Press Release document is complete, it feeds the remaining core docs:
 
-**1. Press Release + FAQ → Product Overview**
+**1. Press Release + FAQ → (3) Solution Design**
 - Expand on value proposition
 - Add technical approach at high level
 - Include cost/performance analysis
 
-**2. Customer Experience + User Manual → Detailed Requirements**
+**2. Customer Experience + User Manual → (4) Detailed Requirements**
 - Convert user journeys to user stories
 - Add acceptance criteria
 - Define non-functional requirements
 
-**3. Implementation Mapping → Architecture & System Design**
+**3. Implementation Mapping → (5) Architecture**
 - Detail technical components
 - Define APIs and interfaces
 - Specify infrastructure and deployment
@@ -540,13 +540,13 @@ Once working backwards documents are complete:
 - Define quality gates
 - Establish monitoring
 
-The working backwards documents provide the "north star" while technical documents provide the implementation roadmap.
+The (2) Press Release provides the "north star" while the technical documents provide the implementation roadmap.
 
 ---
 
 ## Open Questions & Unknowns
 
-> **CRITICAL**: These must be resolved before finalizing customer value proposition. Don't block - capture and continue.
+> **CRITICAL**: These must be resolved before finalising the customer value proposition. Don't block — capture and continue.
 
 ### Customer & Market Questions
 
@@ -559,7 +559,7 @@ The working backwards documents provide the "north star" while technical documen
 
 | # | Question | Status | Notes/Decision |
 |---|----------|--------|----------------|
-| Q1 | [Example: Which features are must-have vs nice-to-have for launch?] | ⏳ PENDING | **Action**: Stakeholder prioritization needed |
+| Q1 | [Example: Which features are must-have vs nice-to-have for launch?] | ⏳ PENDING | **Action**: Stakeholder prioritisation needed |
 | Q2 | [Example: What's the pricing model?] | ⏳ DECISION LATER | Can be decided after MVP validation |
 
 ### Success Metrics

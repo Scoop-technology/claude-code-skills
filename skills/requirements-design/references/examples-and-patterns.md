@@ -335,7 +335,7 @@ SSO_CERT_URL=https://login.microsoftonline.com/tenant-id/federationmetadata/2007
 - ✅ Switch providers with configuration change only (no code changes)
 - ✅ Can test with mock provider in development
 - ✅ Can support multiple providers simultaneously (Okta for internal, Azure AD for partners)
-- ✅ Solution is reusable across different organizations/contexts
+- ✅ Solution is reusable across different organisations/contexts
 
 ---
 
@@ -404,15 +404,15 @@ SSO_CERT_URL=https://login.microsoftonline.com/tenant-id/federationmetadata/2007
    as SharePoint connector (authenticate → enumerate → extract → transform → index).
    ```
 
-3. **Update `01-constraints-ai-assistant.md`** (if new constraints):
+3. **Update `01-business-guardrails-ai-assistant.md`** (if new guardrails):
    ```markdown
-   **NEW Constraint**: Must use Microsoft Graph API
+   **NEW Guardrail**: Must use Microsoft Graph API
    - **Type**: Technical Standard
    - **Rationale**: Official Microsoft API for SharePoint
    - **Impact**: Cannot use legacy SharePoint REST API
    ```
 
-4. **Keep `customer-value` and `solution-design` mostly unchanged** (unless value proposition changes)
+4. **Keep `02-press-release` and `03-solution-design` mostly unchanged** (unless value proposition changes)
 
 ### Example 2: New Phase (Create New Document Set)
 
@@ -423,8 +423,8 @@ SSO_CERT_URL=https://login.microsoftonline.com/tenant-id/federationmetadata/2007
 **Steps**:
 
 1. **Create Phase 2 document set**:
-   - `01-constraints-ai-assistant-phase2.md`
-   - `02-customer-value-ai-assistant-phase2.md`
+   - `01-business-guardrails-ai-assistant-phase2.md`
+   - `02-press-release-ai-assistant-phase2.md`
    - `03-solution-design-ai-assistant-phase2.md`
    - `04-requirements-ai-assistant-phase2.md`
    - `05-architecture-ai-assistant-phase2.md`

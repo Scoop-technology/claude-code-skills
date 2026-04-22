@@ -18,7 +18,7 @@ When this command is invoked, load the **project-management** skill for:
 - Story structure and best practices
 
 Then load the **agile-board** skill to:
-- Create the story on the configured board (ZenHub/Jira/Linear)
+- Create the story on the configured board (markdown (default), GitHub Issues, ZenHub, Jira, Linear)
 - Link to epic/parent
 - Add labels and assign to sprint
 

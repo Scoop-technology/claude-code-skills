@@ -44,7 +44,7 @@ This document shows how all 5 skills work together throughout the complete devel
 
 4. **Create Issue on Board**
    - Use: `agile-board` skill for board-specific implementation
-   - Reference: Board-specific file (e.g., `agile-board/references/zenhub.md`)
+   - Reference: Board-specific file in `agile-board/references/` (e.g., `markdown.md`, `github-issues.md`, `zenhub.md`, `jira.md`, `linear.md`)
    - Set: estimate, labels, epic link, pipeline
 
 5. **Add to Sprint**
@@ -497,7 +497,7 @@ agile-board: Mark AC complete ("Returns unique results")
 **git-workflow** depends on:
 - **project-management**: ACs for PR verification and implementation guidance
 - **developer-analysis**: Design proposal to follow during implementation
-- **testing** (reference): Coverage targets, quality patterns, test organization
+- **testing** (reference): Coverage targets, quality patterns, test organisation
 
 **agile-board** depends on:
 - **project-management**: Story content, estimates, templates

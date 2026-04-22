@@ -218,7 +218,7 @@ Step-by-step description of how data moves through the system:
 ### Reusability & Extensibility
 
 **Multi-tenancy support:**
-- How the system supports multiple organizations/domains
+- How the system supports multiple organisations/domains
 - Example: `kb_id` parameter for logical separation
 
 **Adding new sources/features:**

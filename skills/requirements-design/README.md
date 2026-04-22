@@ -2,28 +2,28 @@
 
 A comprehensive skill for gathering requirements and creating world-class design documentation that enables effective planning, estimation, and implementation.
 
-**This skill actively challenges assumptions, researches alternatives, and suggests improvements** - it's not a passive order-taker.
+**This skill actively challenges assumptions, researches alternatives, and suggests improvements** — it's not a passive order-taker.
 
 ## Overview
 
 This skill transforms initial ideas and requirements into interconnected documents:
 
-**Core Documents (All Five Always Created)**:
-1. **Constraints** - Project boundaries and guiding principles (always created first)
-2. **Customer Value** - Why will we win? Value proposition and competitive advantage
-   - Press release, FAQs, customer experience mockups (Working Backwards methodology)
+**Core Documents (All Five Always Created, numbered 1–5)**:
+1. **Business Guardrails** — Project boundaries and guiding principles (always created first)
+2. **Press Release** — Why will we win? Value proposition and competitive advantage, framed as a future-dated press release
+   - Press release, FAQs, customer experience mockups (Amazon's Working Backwards methodology)
    - Audience: Business stakeholders, product managers, executives, investors
-3. **Solution Design** - High-level delivery approach
+3. **Solution Design** — High-level delivery approach
    - Problem statement, solution overview, design decisions, architecture philosophy
    - Audience: Technical stakeholders, architects, engineering teams, product managers
-4. **Requirements** - Detailed specifications (WHAT to build)
+4. **Detailed Requirements** — Detailed specifications (WHAT to build)
    - Comprehensive functional/non-functional requirements, user stories
-5. **Architecture** - Technical blueprint (HOW to implement)
+5. **Architecture** — Technical blueprint (HOW to implement)
    - Component diagrams, system design, API contracts, data flows
 
 **Why All Five?**
 - **Consistency**: Same structure across all projects
-- **Different Audiences**: Customer Value for business, Solution Design bridges both worlds, Requirements/Architecture for technical teams
+- **Different Audiences**: (2) Press Release for business, (3) Solution Design bridges both worlds, (4) Detailed Requirements / (5) Architecture for technical teams
 - **Complete Picture**: Value proposition + Delivery approach + Detailed specs + Implementation blueprint
 
 Additionally, the skill can help:
@@ -85,16 +85,16 @@ This skill is based on real-world documentation from successful projects (like t
 **Phase 0: Review Existing Documentation** (If applicable, 15-30 minutes)
 - Skill asks if you have existing requirements or documentation
 - If yes, provide the location/path to existing docs
-- Skill reads and analyzes existing content
+- Skill reads and analyses existing content
 - Identifies gaps, inconsistencies, or areas needing clarification
 - Proposes how to incorporate existing content into new document structure
 
-**Phase 1: Capture Constraints** (15-30 minutes)
+**Phase 1: Capture Business Guardrails** (15–30 minutes)
 - **Always first**: Identify non-negotiable requirements
 - Document platform mandates, compliance, budget, timeline, architecture principles
 - Creates foundation for all recommendations
 
-**Phase 2: Requirements Gathering** (30-60 minutes)
+**Phase 2: Requirements Gathering** (30–60 minutes)
 - Discuss project context, problems, goals
 - Identify users and stakeholders
 - Explore technical constraints
@@ -105,23 +105,23 @@ This skill is based on real-world documentation from successful projects (like t
 The skill will recommend an approach that determines **document creation order**, not which documents to create:
 
 **Approach A: Customer-First** (When Value Proposition Needs Clarity)
-- Order: Constraints → Customer Value → Solution Design → Requirements → Architecture
+- Order: (1) Business Guardrails → (2) Press Release → (3) Solution Design → (4) Detailed Requirements → (5) Architecture
 - Best for: Greenfield products, unclear value proposition, need stakeholder buy-in
 - Start by articulating why customers will choose this, then translate to delivery approach
 
 **Approach B: Technical-First** (When Delivery Approach is Clear)
-- Order: Constraints → Solution Design → Customer Value → Requirements → Architecture
+- Order: (1) Business Guardrails → (3) Solution Design → (2) Press Release → (4) Detailed Requirements → (5) Architecture
 - Best for: Clear requirements, technical projects, established products
-- Start with delivery approach and design decisions, then frame the customer value
+- Start with delivery approach and design decisions, then frame the customer value proposition
 
 **Approach C: Parallel** (When Time is Critical)
-- Order: Constraints → [Customer Value + Solution Design] → Requirements → Architecture
+- Order: (1) Business Guardrails → [(2) Press Release + (3) Solution Design in parallel] → (4) Detailed Requirements → (5) Architecture
 - Best for: Experienced teams, well-understood domain, tight timelines
 - Develop both vision documents simultaneously
 
-**All approaches create the same five documents** - only the order and emphasis differ.
+**All approaches create the same five documents** — only the order and emphasis differ.
 
-**Result**: Every project gets complete documentation with both customer value proposition and high-level delivery approach.
+**Result**: Every project gets complete documentation with both a press-release-style customer value proposition and a high-level delivery approach.
 
 **Phase 4: Story Decomposition** (Optional, 1-2 hours)
 - Break requirements into epics (5-10 major feature areas)
@@ -165,7 +165,7 @@ This skill is **actively challenging, not passively documenting**. It:
 **For detailed examples and patterns**, see the [SKILL.md](SKILL.md) file which contains:
 - Specific challenge/research/suggest examples
 - Anti-patterns to avoid
-- How to handle conflicts and prioritization
+- How to handle conflicts and prioritisation
 - Exit criteria and handoff checklists
 
 ## Document Templates
@@ -238,9 +238,9 @@ This skill is **actively challenging, not passively documenting**. It:
 
 ---
 
-### 4. Working Backwards (Optional)
+### 4. Press Release (Working Backwards)
 
-**Purpose**: Start with customer experience, work backwards to implementation
+**Purpose**: Start with customer experience, work backwards to implementation. This is the (2) Press Release document.
 
 **Audience**: Product team, stakeholders, leadership
 
@@ -251,9 +251,9 @@ This skill is **actively challenging, not passively documenting**. It:
 - User Manual Draft
 - Mapping to Implementation
 
-**Length**: 10-20 pages
+**Length**: 10–20 pages
 
-**Example**: See `references/working-backwards-template.md`
+**Example**: See `references/press-release-template.md`
 
 ---
 
@@ -261,14 +261,14 @@ This skill is **actively challenging, not passively documenting**. It:
 
 The skill includes comprehensive reference materials:
 
-- **[project-constraints-template.md](references/project-constraints-template.md)** - Template for capturing non-negotiable constraints
-- **[requirements-gathering.md](references/requirements-gathering.md)** - Structured questionnaire for gathering complete requirements
-- **[product-overview-template.md](references/product-overview-template.md)** - Template for high-level vision document
-- **[detailed-requirements-template.md](references/detailed-requirements-template.md)** - Template for comprehensive requirements
-- **[architecture-template.md](references/architecture-template.md)** - Template for system design document
-- **[story-decomposition.md](references/story-decomposition.md)** - Guide for initial epic/story breakdown from requirements (handoff to project-management for refinement)
-- **[technical-pointers.md](references/technical-pointers.md)** - Guide for providing implementation guidance
-- **[working-backwards-template.md](references/working-backwards-template.md)** - Amazon's working backwards methodology
+- **[business-guardrails-template.md](references/business-guardrails-template.md)** — Template for (1) Business Guardrails (non-negotiable boundaries)
+- **[press-release-template.md](references/press-release-template.md)** — Template for (2) Press Release (Amazon's Working Backwards methodology)
+- **[product-overview-template.md](references/product-overview-template.md)** — Template for (3) Solution Design / high-level vision
+- **[detailed-requirements-template.md](references/detailed-requirements-template.md)** — Template for (4) Detailed Requirements
+- **[architecture-template.md](references/architecture-template.md)** — Template for (5) Architecture / system design
+- **[requirements-gathering.md](references/requirements-gathering.md)** — Structured questionnaire for gathering complete requirements
+- **[story-decomposition.md](references/story-decomposition.md)** — Guide for initial epic/story breakdown from requirements (handoff to project-management for refinement)
+- **[technical-pointers.md](references/technical-pointers.md)** — Guide for providing implementation guidance
 
 ## Output Structure
 
@@ -276,19 +276,19 @@ By default, documents are created in `docs/Design/`:
 
 ```
 docs/Design/
-├── 01-constraints-{project-name}.md         # 1. Project Boundaries
-├── 02-customer-value-{project-name}.md      # 2. Why Will We Win?
-├── 03-solution-design-{project-name}.md     # 3. High-Level Delivery Approach
-├── 04-requirements-{project-name}.md        # 4. Detailed Specifications
-└── 05-architecture-{project-name}.md        # 5. Technical Blueprint
+├── 01-business-guardrails-{project-name}.md  # (1) Project Boundaries
+├── 02-press-release-{project-name}.md        # (2) Why Will We Win?
+├── 03-solution-design-{project-name}.md      # (3) High-Level Delivery Approach
+├── 04-requirements-{project-name}.md         # (4) Detailed Specifications
+└── 05-architecture-{project-name}.md         # (5) Technical Blueprint
 ```
 
 **All five documents are always created** for consistency and completeness.
 
 **Document Creation Order** (varies by approach chosen):
-- **Customer-First**: Constraints → Customer Value → Solution Design → Requirements → Architecture
-- **Technical-First**: Constraints → Solution Design → Customer Value → Requirements → Architecture
-- **Parallel**: Constraints → [Customer Value + Solution Design] → Requirements → Architecture
+- **Customer-First**: (1) → (2) → (3) → (4) → (5) — Business Guardrails → Press Release → Solution Design → Detailed Requirements → Architecture
+- **Technical-First**: (1) → (3) → (2) → (4) → (5) — Business Guardrails → Solution Design → Press Release → Detailed Requirements → Architecture
+- **Parallel**: (1) → [(2) + (3)] → (4) → (5) — Business Guardrails → [Press Release + Solution Design in parallel] → Detailed Requirements → Architecture
 
 You can specify a different location if preferred.
 
@@ -381,12 +381,12 @@ For each story, provide:
 3. **Code References**: Similar implementations in codebase (with file:line references)
 4. **External Resources**: Official docs, tutorials, examples
 5. **Testing Strategy**: Unit, integration, E2E, performance, security tests
-6. **Performance Considerations**: Targets, optimizations, monitoring
+6. **Performance Considerations**: Targets, optimisations, monitoring
 7. **Security Considerations**: Concerns, mitigations, testing
 
 ## Working Backwards Process
 
-The skill supports Amazon's "Working Backwards" methodology:
+The (2) Press Release document uses Amazon's "Working Backwards" methodology:
 
 1. **Press Release**: Write customer-facing announcement
 2. **FAQs**: Answer customer and internal questions
@@ -394,7 +394,7 @@ The skill supports Amazon's "Working Backwards" methodology:
 4. **User Manual**: Draft how customers will use it
 5. **Map to Implementation**: Connect customer needs to technical requirements
 
-This approach ensures customer value drives technical decisions.
+This approach ensures the customer value proposition drives technical decisions.
 
 ## Integration with Other Skills
 
@@ -504,7 +504,7 @@ A: Track actuals vs estimates. Adjust estimation approach based on learnings.
   - Core templates (Product Overview, Requirements, Architecture)
   - Story decomposition guide
   - Technical pointers guide
-  - Working backwards template
+  - Press Release template (Working Backwards methodology)
 
 ## Feedback & Contributions
 
