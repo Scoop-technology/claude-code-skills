@@ -188,7 +188,7 @@ This skill is **actively challenging, not passively documenting**. It:
 
 **Length**: 5-10 pages
 
-**Example**: See template in [product-overview-template.md](references/product-overview-template.md)
+**Example**: See template in [03-solution-design-template.md](references/03-solution-design-template.md)
 
 ---
 
@@ -210,7 +210,7 @@ This skill is **actively challenging, not passively documenting**. It:
 
 **Length**: 20-50 pages
 
-**Example**: See template in [detailed-requirements-template.md](references/detailed-requirements-template.md)
+**Example**: See template in [04-detailed-requirements-template.md](references/04-detailed-requirements-template.md)
 
 ---
 
@@ -234,7 +234,7 @@ This skill is **actively challenging, not passively documenting**. It:
 
 **Length**: 20-40 pages
 
-**Example**: See template in [architecture-template.md](references/architecture-template.md)
+**Example**: See template in [05-architecture-template.md](references/05-architecture-template.md)
 
 ---
 
@@ -253,7 +253,7 @@ This skill is **actively challenging, not passively documenting**. It:
 
 **Length**: 10–20 pages
 
-**Example**: See `references/press-release-template.md`
+**Example**: See `references/02-press-release-template.md`
 
 ---
 
@@ -261,11 +261,11 @@ This skill is **actively challenging, not passively documenting**. It:
 
 The skill includes comprehensive reference materials:
 
-- **[business-guardrails-template.md](references/business-guardrails-template.md)** — Template for (1) Business Guardrails (non-negotiable boundaries)
-- **[press-release-template.md](references/press-release-template.md)** — Template for (2) Press Release (Amazon's Working Backwards methodology)
-- **[product-overview-template.md](references/product-overview-template.md)** — Template for (3) Solution Design / high-level vision
-- **[detailed-requirements-template.md](references/detailed-requirements-template.md)** — Template for (4) Detailed Requirements
-- **[architecture-template.md](references/architecture-template.md)** — Template for (5) Architecture / system design
+- **[01-business-guardrails-template.md](references/01-business-guardrails-template.md)** — Template for (1) Business Guardrails (non-negotiable boundaries)
+- **[02-press-release-template.md](references/02-press-release-template.md)** — Template for (2) Press Release (Amazon's Working Backwards methodology)
+- **[03-solution-design-template.md](references/03-solution-design-template.md)** — Template for (3) Solution Design / high-level vision
+- **[04-detailed-requirements-template.md](references/04-detailed-requirements-template.md)** — Template for (4) Detailed Requirements
+- **[05-architecture-template.md](references/05-architecture-template.md)** — Template for (5) Architecture / system design
 - **[requirements-gathering.md](references/requirements-gathering.md)** — Structured questionnaire for gathering complete requirements
 - **[story-decomposition.md](references/story-decomposition.md)** — Guide for initial epic/story breakdown from requirements (handoff to project-management for refinement)
 - **[technical-pointers.md](references/technical-pointers.md)** — Guide for providing implementation guidance

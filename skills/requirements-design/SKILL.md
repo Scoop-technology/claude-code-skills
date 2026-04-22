@@ -29,7 +29,7 @@ You should actively use tools to research:
    - Created BEFORE other documents to guide all recommendations
    - Sometimes called "non-negotiables" or "constraints" informally; the document name is **Business Guardrails**
    - File: `01-business-guardrails-{project-name}.md`
-   - Template: [business-guardrails-template.md](references/business-guardrails-template.md)
+   - Template: [01-business-guardrails-template.md](references/01-business-guardrails-template.md)
 
 2. **Press Release** — Why Will We Win?
    - Customer value proposition and competitive advantage, framed as a future-dated press release
@@ -37,7 +37,7 @@ You should actively use tools to research:
    - Explains WHY customers will choose this and love it
    - Audience: business stakeholders, product managers, executives, investors
    - File: `02-press-release-{project-name}.md`
-   - Template: [press-release-template.md](references/press-release-template.md)
+   - Template: [02-press-release-template.md](references/02-press-release-template.md)
 
 3. **Solution Design** — High-Level End-to-End Architecture
    - Problem statement, solution overview, key design decisions
@@ -49,8 +49,7 @@ You should actively use tools to research:
    - Bridges business context and technical implementation
    - Audience: technical stakeholders, architects, engineering teams, product managers
    - File: `03-solution-design-{project-name}.md` or `03-end-to-end-architecture-{project-name}.md`
-   - Template: [product-overview-template.md](references/product-overview-template.md)
-   - **Gold Standard Example:** See funnelback's `end-to-end-solution-architecture.md`
+   - Template: [03-solution-design-template.md](references/03-solution-design-template.md)
 
 4. **Detailed Requirements** — Specifications
    - Comprehensive functional and non-functional requirements
@@ -58,7 +57,7 @@ You should actively use tools to research:
    - Technical dependencies
    - Detailed enough to create epics, stories, and effort estimates
    - File: `04-requirements-{project-name}.md`
-   - Template: [detailed-requirements-template.md](references/detailed-requirements-template.md)
+   - Template: [04-detailed-requirements-template.md](references/04-detailed-requirements-template.md)
 
 5. **Architecture** — Detailed Technical Blueprint
    - Detailed component architecture and implementation specifications
@@ -72,7 +71,7 @@ You should actively use tools to research:
    - Implementation-ready technical design with code examples
    - More detailed than Solution Design - includes implementation-level specifications
    - File: `05-architecture-{project-name}.md`
-   - Template: [architecture-template.md](references/architecture-template.md)
+   - Template: [05-architecture-template.md](references/05-architecture-template.md)
 
 **Why all five?**
 - **Consistency**: same structure across all projects
@@ -438,7 +437,7 @@ These will help me provide recommendations that work within your reality."
 
 ### Document Business Guardrails Immediately
 
-Create `docs/Design/01-business-guardrails-{project-name}.md` using [business-guardrails-template.md](references/business-guardrails-template.md).
+Create `docs/Design/01-business-guardrails-{project-name}.md` using [01-business-guardrails-template.md](references/01-business-guardrails-template.md).
 
 **Structure**:
 ```markdown
@@ -635,7 +634,7 @@ A document is NOT complete until:
 
 1. **Ask explicitly**: "What are your performance, security, and reliability requirements?"
 2. **Provide examples**: "P95 response time < 500ms, 99.9% uptime, GDPR compliance"
-3. **Use templates**: NFR sections in detailed-requirements-template.md
+3. **Use templates**: NFR sections in 04-detailed-requirements-template.md
 4. **Make them testable**: Vague ("fast") → Specific ("<500ms P95")
 5. **Prioritize**: Must-have vs nice-to-have NFRs
 
@@ -1054,8 +1053,6 @@ Authorization: Bearer <jwt_token>
 - Plan for multiple phases (MVP → full production)
 - Consider reusability across domains
 - Document what's deferred and why
-
-**Gold Standard Reference:** See `/home/piers/GitHub/Deakin/funnelback-search-service/docs/Design/end-to-end-solution-architecture.md` for an exemplary document that follows all these patterns
 
 ## Getting Started
 
@@ -1670,11 +1667,11 @@ Is this a new feature?
 
 Throughout this process, reference:
 - [requirements-gathering.md](references/requirements-gathering.md) — Structured questionnaire
-- [business-guardrails-template.md](references/business-guardrails-template.md) — (1) Business Guardrails template
-- [press-release-template.md](references/press-release-template.md) — (2) Press Release template (Amazon's Working Backwards methodology)
-- [product-overview-template.md](references/product-overview-template.md) — (3) Solution Design template
-- [detailed-requirements-template.md](references/detailed-requirements-template.md) — (4) Detailed Requirements template
-- [architecture-template.md](references/architecture-template.md) — (5) Architecture template
+- [01-business-guardrails-template.md](references/01-business-guardrails-template.md) — (1) Business Guardrails template
+- [02-press-release-template.md](references/02-press-release-template.md) — (2) Press Release template (Amazon's Working Backwards methodology)
+- [03-solution-design-template.md](references/03-solution-design-template.md) — (3) Solution Design template
+- [04-detailed-requirements-template.md](references/04-detailed-requirements-template.md) — (4) Detailed Requirements template
+- [05-architecture-template.md](references/05-architecture-template.md) — (5) Architecture template
 - [story-decomposition.md](references/story-decomposition.md) — Initial epic/story breakdown from requirements (handoff to `/project-management` for refinement)
 - [technical-pointers.md](references/technical-pointers.md) — Guide for providing technical references
 
